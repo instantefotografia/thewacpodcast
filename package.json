@@ -21,7 +21,7 @@
     "tailwind-scrollbar-hide": "^2.0.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.0.9",
-    "tailwindcss": "^4.0.9"
+    "@tailwindcss/vite": "^4.0.12",
+    "tailwindcss": "^4.0.12"
   }
 }

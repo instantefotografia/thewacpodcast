@@ -41,7 +41,7 @@ const podcastPlatforms = [
 
 <section id="navigation" class="z-10 bg-white">
   <Wrapper variant="standard" class="pt-2 wrapper-class">
-    <div class="grid grid-cols-3 gap-2 items-start w-full pb-4">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-start w-full pb-4">
       <!-- Header content -->
       <div class="col-span-2 md:col-span-1">
         <a href="/">
@@ -50,7 +50,7 @@ const podcastPlatforms = [
             variant="textXS"
             class="text-black font-medium hover:text-base-600 uppercase"
           >
-             Innovative Design Conversations — <span class="text-base-500"
+            Innovative Design Conversations — <span class="text-base-500"
               >editorial</span
             >
           </Text>
@@ -81,7 +81,7 @@ const podcastPlatforms = [
         >
           menu
         </button>
-        <BlogSearch/>
+        <BlogSearch />
       </div>
     </div>
     <!-- Drawer -->
@@ -89,7 +89,7 @@ const podcastPlatforms = [
       id="menu"
       role="navigation"
       aria-labelledby="menubutton"
-      class="relative overflow-hidden border-y bg-white "
+      class="relative overflow-hidden border-y bg-white"
     >
       <div class="grid grid-cols-1 md:grid-cols-4 gap-2 pb-12 pt-6 mb-4">
         <a href="/">
@@ -143,7 +143,7 @@ const podcastPlatforms = [
           >
             Blog
           </Text>
-          <div class="md:grid grid-cols-1  gap-2 lg:grid-cols-2  mt-1 hidden">
+          <div class="md:grid grid-cols-1 gap-2 lg:grid-cols-2 mt-1 hidden">
             {allPosts.slice(0, 2).map((post) => <BlogEntriesOne post={post} />)}
           </div>
         </div>

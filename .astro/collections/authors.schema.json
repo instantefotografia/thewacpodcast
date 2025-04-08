@@ -10,7 +10,7 @@
         "role": {
           "type": "string"
         },
-        "description": {
+        "bio": {
           "type": "string"
         },
         "image": {
@@ -29,14 +29,30 @@
           ],
           "additionalProperties": false
         },
+        "socials": {
+          "type": "object",
+          "properties": {
+            "twitter": {
+              "type": "string"
+            },
+            "website": {
+              "type": "string"
+            },
+            "linkedin": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
         "$schema": {
           "type": "string"
         }
       },
       "required": [
         "name",
-        "role",
-        "description",
         "image"
       ],
       "additionalProperties": false

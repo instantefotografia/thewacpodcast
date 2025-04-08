@@ -58,7 +58,9 @@ const additionalClasses = className ? className.split(" ") : [];
           "items-center",
           "duration-300",
           "justify-center",
-          "focus:outline-none", // Keep this to remove the browser's default outline
+          "focus:ring-2",
+          "focus:outline-none",
+          "focus:ring-offset-2",
           variant === "muted" && mutedClass,
           variant === "accent" && accentClass,
           variant === "default" && defaultClass,

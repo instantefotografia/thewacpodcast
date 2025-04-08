@@ -1,14 +1,27 @@
 ---
-// Images
+// Assets
 import { Image } from "astro:assets";
+import ShareButtons from "@/components/fundations/elements/ShareButtons.astro";
 // Fundations
 import BaseLayout from "./BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/elements/Link.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Sections
 import Subscribe from "@/components/blog/Subscribe.astro";
+import BlogEntry1 from "@/components/blog/BlogEntry1.astro";
 // Props
 const { frontmatter } = Astro.props;
+import { getEntry } from "astro:content";
+const author = await getEntry("authors", frontmatter.author);
+// Get all posts and filter by tag
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("posts");
+const relatedPosts = allPosts.filter(
+  (post) =>
+    post.slug !== frontmatter.slug && 
+    post.data.tags.some((tag) => frontmatter.tags.includes(tag))
+);
 ---
 
 <BaseLayout>
@@ -42,34 +55,56 @@ const { frontmatter } = Astro.props;
     <Wrapper variant="narrow" class="py-24">
       <div>
         <div>
-          <Text tag="p" variant="textXS" class="text-center text-base-500">
-            <time
-              datetime={new Date(frontmatter.pubDate).toLocaleDateString(
-                "en-US",
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "2-digit",
-                }
-              )}
-            >
-              {
-                new Date(frontmatter.pubDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "2-digit",
-                })
-              }</time
-            >
-          </Text>
+          {
+            author && (
+              <a
+                href={`/authors/${author.slug}`}
+                class="flex items-center gap-3 hover:opacity-80 transition justify-center"
+              >
+                {author?.data?.image?.url && (
+                  <Image
+                    width={100}
+                    height={100}
+                    src={author.data.image.url}
+                    alt={author.data.image.alt}
+                    class="inline-block size-10 object-cover rounded-full object-center"
+                  />
+                )}
+                <Text tag="p" variant="textXS" class="text-base-500 ">
+                  <span class="">
+                    Written in
+                    <span class="italic font-medium text-base-600">
+                      <time
+                        datetime={new Date(frontmatter.pubDate).toISOString()}
+                      >
+                        {new Date(frontmatter.pubDate).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "2-digit",
+                          }
+                        )}
+                      </time>
+                    </span>
+                  </span>
+                  <span class="">
+                    by
+                    <span class="italic font-medium text-base-600">
+                      {author.data.name}
+                    </span>
+                  </span>
+                  <span class="block"> {author.data.role}</span>
+                </Text>
+              </a>
+            )
+          }
           <Text
             tag="h1"
             variant="displayMD"
-            class="font-serif font-light leading-6 mt-8 md:leading-8 text-base-500 text-center"
+            class="font-serif font-light leading-6 mt-8 md:leading-8 text-base-500 text-center text-balance"
           >
-            <span class="text-black font-medium">{frontmatter.author}</span> — {
-              frontmatter.description
-            }</Text
+            {frontmatter.description}</Text
           >
           <div class="flex justify-center gap-2 mt-4">
             {
@@ -86,11 +121,58 @@ const { frontmatter } = Astro.props;
             }
           </div>
         </div>
-        <Wrapper variant="prose" class="max-w-xl mx-auto mt-24"
-          ><slot /></Wrapper
-        >
+
+        {
+          frontmatter.isLocked ? (
+            
+              <div class="text-center py-20">
+                <Text
+                  tag="h4"
+                  variant="displaySM"
+                  class="text-black  text-center text-balance font-serif max-w-4xl tracking-tight mx-auto font-light"
+                >
+                  This post is for subscribers only. Unlock premium insights by
+                  becoming a member.
+                </Text>
+                <div class="flex justify-center mt-8 flex-wrap gap-2">
+                  <Link size="sm" variant="muted" href="/forms/login">
+                    Log in
+                  </Link>
+                  <Link size="sm" variant="default" href="/pricing">
+                    Subscribe Now
+                  </Link>
+                </div>
+              </div>
+          ) : (
+            <Wrapper variant="prose" class="max-w-xl mx-auto mt-24">
+              <slot />
+            </Wrapper>
+               <div class="mt-6 pt-6 border-t border-black">
+              <ShareButtons
+                      contentType="blog"
+                      description={frontmatter.description}
+                    />
+            </div>
+          )
+        }
       </div>
     </Wrapper>
   </section>
+  {
+    relatedPosts.length > 0 && (
+      <section>
+        <Wrapper variant="standard" class="py-8">
+          <Text tag="p" variant="textSM" class="uppercase font-medium">
+            Related posts
+          </Text>
+          <div class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+            {relatedPosts.slice(0, 3).map((post) => (
+              <BlogEntry1 post={post} />
+            ))}
+          </div>
+        </Wrapper>
+      </section>
+    )
+  }
   <Subscribe />
 </BaseLayout>

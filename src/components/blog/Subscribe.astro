@@ -4,20 +4,17 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
-<section class=" bg-white border-t border-black">
-  <Wrapper
-    variant="standard"
-    class="py-12  lg:pt-48 flex flex-col  "
-  >
+<section>
+  <Wrapper variant="standard" class="py-12 lg:pt-48 flex flex-col">
     <Text
       tag="p"
       variant="displayXL"
-      class="text-black  font-serif tracking-tight lg:text-balance font-light"
+      class="text-black font-serif tracking-tight lg:text-balance font-light"
     >
       Subscribe to our newsletter to get the latest updates on our blog and
       podcasts.
     </Text>
-    <form class="space-y-4 w-full mt-8  flex gap-2 items-baseline">
+    <form class="space-y-4 w-full mt-8 flex gap-2 items-baseline">
       <div class="w-full">
         <label for="email" class="sr-only"> Email Address </label>
         <input

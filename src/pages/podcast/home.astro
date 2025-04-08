@@ -2,11 +2,13 @@
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
+import Link from "@/components/fundations/elements/Link.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Podcast entry components
-import PodcastWideEntry from "@/components/podcast/PodcastWideEntry.astro";
+import PodcastEntry2 from "@/components/podcast/PodcastEntry2.astro";
+import PodcastEntry1 from "@/components/podcast/PodcastEntry1.astro";
 // Sections
-import Hero from "@/components/podcast/Hero.astro";
+import PodcastHero from "@/components/podcast/PodcastHero.astro";
 import Subscribe from "@/components/blog/Subscribe.astro";
 
 // Asro content collections
@@ -21,13 +23,33 @@ allPodcasts.sort((a, b) => {
 ---
 
 <BaseLayout>
-  <Hero />
+  <PodcastHero />
   <section>
-    <Wrapper variant="standard">
-      <div class="border-y divide-y border-black pt-2 mt-4 flex flex-col">
-        {allPodcasts.map((post) => <PodcastWideEntry post={post} />)}
+    <Wrapper variant="standard" class="pt-32 pb-12">
+      <div
+        class="border-t border-black pt-4 flex flex-col items-start divide-y"
+      >
+        {allPodcasts.map((post) => <PodcastEntry2 post={post} />)}
       </div>
     </Wrapper>
   </section>
+  <section>
+    <Wrapper variant="standard" class="pt-32 pb-12">
+      <Text tag="p" variant="textSM" class="uppercase font-medium">
+        Subscribers only
+      </Text>
+
+      <div
+        class="grid border-t border-black pt-4 mt-4 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+      >
+        {
+          allPodcasts
+            .filter((post) => post.data.isLocked)
+            .map((post) => <PodcastEntry1 post={post} />)
+        }
+      </div>
+    </Wrapper>
+  </section>
+
   <Subscribe />
 </BaseLayout>

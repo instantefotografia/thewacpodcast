@@ -37,7 +37,16 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro --help` | Get help using the Astro CLI                     |
 
 Learn more - Explore more through Astro's official [documentation](https://docs.astro.build).
-
+------
+Updated on 08th April 2025
+## This update includes:
+- Cleaned design
+- Linked Authors to posts and podcasts
+- Addded related posts and podcasts on authors layout
+- Added options paywall to blog posts and podcasts
+- Addded related posts on posts and podcasts layouts
+- Added flags on blog posts and podcasts
+- Custom audio player
 ------
 Updated on 28th January 2025
 ## This update includes:

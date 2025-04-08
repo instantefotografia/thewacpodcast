@@ -61,24 +61,29 @@
           ],
           "additionalProperties": false
         },
-        "channels": {
+        "episodeNumber": {
+          "type": "number"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "audioSrc": {
+          "type": "string"
+        },
+        "tags": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "label": {
-                "type": "string"
-              },
-              "url": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "label",
-              "url"
-            ],
-            "additionalProperties": false
+            "type": "string"
           }
+        },
+        "isRecent": {
+          "type": "boolean"
+        },
+        "isPopular": {
+          "type": "boolean"
+        },
+        "isLocked": {
+          "type": "boolean"
         },
         "$schema": {
           "type": "string"
@@ -91,7 +96,7 @@
         "author",
         "image",
         "guestAvatar",
-        "channels"
+        "tags"
       ],
       "additionalProperties": false
     }

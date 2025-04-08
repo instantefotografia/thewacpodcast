@@ -1,6 +1,6 @@
 ---
 // Assets
-import Logo from "@/components/global/Logo.astro";
+import Logo from "@/components/assets/Logo.astro";
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
@@ -12,8 +12,8 @@ allPodcasts.sort((a, b) => {
   return dateB - dateA; // Compare timestamps
 });
 // Components
-import BlogEntriesOne from "@/components/blog/BlogEntriesOne.astro";
-import EntriesNavigaton from "@/components/blog/EntriesNavigation.astro";
+import BlogEntry1 from "@/components/blog/BlogEntry1.astro";
+import PodcastEntry3 from "@/components/podcast/PodcastEntry3.astro";
 import BlogSearch from "@/components/blog/BlogSearch.astro";
 
 // Get all posts
@@ -56,13 +56,7 @@ const podcastPlatforms = [
           </Text>
         </a>
       </div>
-      <div
-        class="flex flex-col uppercase col-start-1 row-start-2 col-span-2 md:col-span-1 md:col-start-auto md:row-start-auto md:mx-auto md:text-center"
-      >
-        <Text tag="p" variant="textXS" class="text-black font-medium">
-          Interviews with design engineers
-        </Text>
-      </div>
+
       <div class="ml-auto gap-4 flex items-center col-start-3">
         <Text
           tag="a"
@@ -106,7 +100,7 @@ const podcastPlatforms = [
               Interviews
             </Text>
             <div class="md:flex flex-col hidden mt-1">
-              {allPodcasts.map((post) => <EntriesNavigaton post={post} />)}
+              {allPodcasts.map((post) => <PodcastEntry3 post={post} />)}
             </div>
           </div>
           <div>
@@ -144,7 +138,7 @@ const podcastPlatforms = [
             Blog
           </Text>
           <div class="md:grid grid-cols-1 gap-2 lg:grid-cols-2 mt-1 hidden">
-            {allPosts.slice(0, 2).map((post) => <BlogEntriesOne post={post} />)}
+            {allPosts.slice(0, 2).map((post) => <BlogEntry1 post={post} />)}
           </div>
         </div>
       </div>

@@ -5,9 +5,29 @@ import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-
+// Components
+import BlogEntry1 from "@/components/blog/BlogEntry1.astro";
+// Load all posts
+import { getCollection } from "astro:content";
 // Props
 const { frontmatter } = Astro.props;
+
+// Extract the author slug from the current URL (like "david-lee")
+const authorSlug = Astro.url.pathname.split("/").pop();
+
+// Get all content
+const allPosts = await getCollection("posts");
+const allPodcasts = await getCollection("podcast");
+
+// Filter by author slug
+const relatedPosts = allPosts.filter(
+  (post) => post.data.author === authorSlug
+);
+
+const relatedPodcasts = allPodcasts.filter(
+  (episode) => episode.data.author === authorSlug
+);
+
 ---
 
 <BaseLayout>
@@ -16,36 +36,126 @@ const { frontmatter } = Astro.props;
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
           <Image
-            class="h-64 w-full bg-base-50 object-cover sticky top-12 z-10 lg:h-[92vh] grayscale"
             src={frontmatter.image.url}
             alt={frontmatter.image.alt}
             width={1000}
             height={1000}
+            class="h-64 w-full bg-base-50 object-cover sticky top-12  lg:h-[92vh] grayscale"
           />
         </div>
         <div class="lg:py-32">
-          <div class="">
+          <div>
             <Text
               tag="h1"
               variant="display3XL"
-              class="text-black font-serif tracking-tight  font-light"
+              class="text-black font-serif tracking-tight font-light"
             >
               {frontmatter.name}
             </Text>
-            <Text
-              tag="h1"
-              variant="textLG"
-              class="font-serif mt-8 text-base-500 max-w-xl "
-            >
-              <span class="text-black font-medium">{frontmatter.author}</span> —
-              {frontmatter.description}</Text
-            >
+            {
+              frontmatter.role && (
+                <Text
+                  tag="p"
+                  variant="textXS"
+                  class="uppercase text-base-500 font-medium mt-1"
+                >
+                  {frontmatter.role}
+                </Text>
+              )
+            }
+            <div class="flex flex-col h-full justify-between mt-4">
+              {
+                frontmatter.bio && (
+                  <div class="flex flex-col gap-2">
+                    {frontmatter.bio.split("\n").map((paragraph) => (
+                      <Text
+                        tag="p"
+                        variant="textSM"
+                        class="text-base-500 font-serif"
+                      >
+                        {paragraph}
+                      </Text>
+                    ))}
+                  </div>
+                )
+              }
+              {/* Social Media Links */}
+              {
+                frontmatter.socials && (
+                  <div class="mt-12 gap-4 flex items-center">
+                    {frontmatter.socials.twitter && (
+                      <a
+                        href={frontmatter.socials.twitter}
+                        aria-label="Twitter"
+                      >
+                        Twitter
+                      </a>
+                    )}
+                    {frontmatter.socials.linkedin && (
+                      <a
+                        href={frontmatter.socials.linkedin}
+                        aria-label="LinkedIn"
+                      >
+                        Linkedin
+                      </a>
+                    )}
+                    {frontmatter.socials.email && (
+                      <a href={frontmatter.socials.email} aria-label="Email">
+                        Email
+                      </a>
+                    )}
+                    {frontmatter.socials.website && (
+                      <a
+                        href={frontmatter.socials.website}
+                        aria-label="Website"
+                      >
+                        Website
+                      </a>
+                    )}
+                  </div>
+                )
+              }
+            </div>
           </div>
-          <Wrapper variant="prose" class="max-w-xl border-t pt-12  mt-12 border-base-300"
-            ><slot /></Wrapper
-          >
         </div>
       </div>
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="pt-32 pb-12">
+      {
+        relatedPosts.length > 0 && (
+          <div>
+            <Text tag="p" variant="textSM" class="uppercase font-medium">
+              More articles from {frontmatter.name}
+            </Text>
+            <div class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-8">
+              {relatedPosts.map((post) => (
+                <BlogEntry1 post={post} />
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </Wrapper>
+  </section>
+  <section>
+    <Wrapper variant="standard" class="pt-32 pb-12">
+      {
+        relatedPodcasts.length > 0 && (
+          <div >
+            <Text tag="p" variant="textSM" class="uppercase font-medium">
+              Interviews with {frontmatter.name}
+            </Text>
+            <div class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-8">
+              {relatedPodcasts.map((episode) => (
+                <BlogEntry1 post={episode} />
+              ))}
+            </div>
+          </div>
+        )
+      }
+      
     </Wrapper>
   </section>
 </BaseLayout>

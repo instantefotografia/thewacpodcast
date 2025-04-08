@@ -1,0 +1,45 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+// Components
+
+// Tags
+import PodcastEntry1 from "@/components/podcast/PodcastEntry1.astro";
+import { getCollection } from "astro:content";
+export async function getStaticPaths() {
+  const allPosts = await getCollection("podcast");
+  const uniqueTags = [
+    ...new Set(allPosts.map((post) => post.data.tags).flat()),
+  ];
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post) =>
+      post.data.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout pageTitle={tag}>
+  <section>
+    <Wrapper variant="standard" class="py-24">
+      <Text tag="h1" variant="textXS" class="font-medium text-black uppercase">
+        all our {tag}
+        articles
+      </Text>
+
+      <div
+        class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-"
+      >
+        {posts.map((post) => <PodcastEntry1 post={post} />)}
+      </div>
+    </Wrapper>
+  </section>
+</BaseLayout>

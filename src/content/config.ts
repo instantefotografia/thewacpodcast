@@ -2,12 +2,20 @@ import { defineCollection, z } from "astro:content";
 const authors = defineCollection({
   schema: z.object({
     name: z.string(),
-    role: z.string(),
-    description: z.string(),
+    role: z.string().optional(),
+    bio: z.string().optional(),
     image: z.object({
       url: z.string(),
       alt: z.string(),
     }),
+    socials: z
+      .object({
+        twitter: z.string().optional(),
+        website: z.string().optional(),
+        linkedin: z.string().optional(),
+        email: z.string().optional(),
+      })
+      .optional(),
   }),
 });
 const infopages = defineCollection({
@@ -16,6 +24,7 @@ const infopages = defineCollection({
     pubDate: z.date(),
   }),
 });
+
 const podcast = defineCollection({
   schema: z.object({
     title: z.string(),
@@ -30,12 +39,14 @@ const podcast = defineCollection({
       url: z.string(),
       alt: z.string(),
     }),
-    channels: z.array(
-      z.object({
-        label: z.string(),
-        url: z.string(),
-      })
-    ),
+    episodeNumber: z.number().optional(),
+    duration: z.string().optional(),
+    audioSrc: z.string().optional(),
+    tags: z.array(z.string()),
+    isRecent: z.boolean().optional(),
+    isPopular: z.boolean().optional(),
+    isLocked: z.boolean().optional(),
+    
   }),
 });
 const posts = defineCollection({
@@ -43,16 +54,15 @@ const posts = defineCollection({
     title: z.string(),
     pubDate: z.date(),
     description: z.string(),
-    author: z.string(),
+    author: z.string(),  
     image: z.object({
       url: z.string(),
       alt: z.string(),
     }),
-    authorAvatar: z.object({
-      url: z.string(),
-      alt: z.string()
-    }),
     tags: z.array(z.string()),
+    isRecent: z.boolean().optional(),
+    isPopular: z.boolean().optional(),
+    isLocked: z.boolean().optional(),
   }),
 });
 export const collections = {

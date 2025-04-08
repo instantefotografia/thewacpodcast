@@ -56,7 +56,8 @@ const pageSections = [
         category: "Blog Pages",
         links: [
           { text: "Blog home", href: "/blog/home" },
-          { text: "Blog Post", href: "/blog/posts/1" },
+          { text: "Blog Post open", href: "/blog/posts/2" },
+          { text: "Blog Post paywall", href: "/blog/posts/1" },
           { text: "Tag Index", href: "/blog/tags" },
           { text: "Tag Category", href: "/blog/tags/balance" },
           { text: "RSS", href: "/rss.xml" },
@@ -66,7 +67,10 @@ const pageSections = [
         category: "Podcast Pages",
         links: [
           { text: "Podcast home", href: "/podcast/home" },
-          { text: "Interview episode", href: "/podcast/interviews/1" },
+          { text: "Interview episode open", href: "/podcast/interviews/2" },
+          { text: "Interview episode paywall", href: "/podcast/interviews/1" },
+          { text: "Tag Index", href: "/podcast/tags" },
+          { text: "Tag Category", href: "/blog/podcast/balance" },
         ],
       },
       {
@@ -80,10 +84,10 @@ const pageSections = [
         ],
       },
       {
-        category: "Other Pages",
+        category: "Authors",
         links: [
           { text: "Authors", href: "/authors/home" },
-          { text: "Author details", href: "/authors/1" },
+          { text: "Author details", href: "/authors/jordan-wells" },
         ],
       },
     ],
@@ -114,10 +118,7 @@ const pageSections = [
                     >
                       {column.category}
                     </Text>
-                    <ul
-                      role="list"
-                      class="mt-1 list-none"
-                    >
+                    <ul role="list" class="mt-1 list-none">
                       {column.links.map((link) => (
                         <li>
                           <Text

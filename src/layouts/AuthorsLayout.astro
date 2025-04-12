@@ -127,7 +127,7 @@ const relatedPodcasts = allPodcasts.filter(
         relatedPosts.length > 0 && (
           <div>
             <Text tag="p" variant="textSM" class="uppercase font-medium">
-              More articles from {frontmatter.name}
+              More articles from {authorSlug}
             </Text>
             <div class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-8">
               {relatedPosts.map((post) => (

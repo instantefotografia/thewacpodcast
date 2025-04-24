@@ -30,6 +30,7 @@ const formattedAuthor = formatAuthorName(author);
 <article
   class="relative w-full py-2 overflow-hidden group grid grid-cols-2 gap-y-8 lg:grid-cols-3 md:col-span-full"
 >
+<a href={url} title={title} aria-label={`Listen more about ${title}`} class="absolute inset-0"></a>
   <Image
     src={image}
     alt={title}
@@ -40,8 +41,8 @@ const formattedAuthor = formatAuthorName(author);
   <Image
     src={guestAvatar}
     alt={title}
-    width="2000"
-    height="2000"
+    width="800"
+    height="800"
     class="object-cover object-center aspect-square lg:order-last"
   />
   <div class="flex flex-col order-first col-span-full lg:col-span-1  lg:h-full">
@@ -51,9 +52,7 @@ const formattedAuthor = formatAuthorName(author);
       </Text>
       <Text tag="h2" variant="textSM" class="mt-1 font-medium">
         {formattedAuthor} —{title}
-        <a href={url} title={title}>
-          <span class="absolute inset-0"></span>
-        </a>
+       
       </Text>
       <Text tag="p" variant="textSM" class="mt-1 text-base-500">
         {description}

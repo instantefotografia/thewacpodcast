@@ -40,13 +40,13 @@ const posts = await Promise.all(
       >
       </div>
       <div
-        class="inline-block w-full max-w-2xl p-2 mt-12 mb-8 text-left align-middle bg-white  lg:mt-48 outline-2 outline-black transition-all transform"
+        class="inline-block w-full max-w-2xl p-2 mt-12 mb-8 text-left align-middle bg-white lg:mt-48 outline-2 outline-black transition-all transform"
       >
         <div class="hidden">
           <button
             type="button"
             id="closeSearch"
-            class="ml-auto cursor-pointer text-base-400 hover:text-base-500"
+            class="ml-auto cursor-pointer text-base-400 hover:text-base-600"
             aria-label="Close search"
           >
             <svg
@@ -67,13 +67,12 @@ const posts = await Promise.all(
           type="text"
           id="searchInput"
           placeholder="Search posts..."
-          class="w-full h-8 px-4 py-2 text-xs bg-white border-t-0 border-b border-x-0  border-base-300 focus:outline-none focus:border focus:ring-base-500 focus:border-base-500 placeholder-base-500"
+          class="w-full h-8 px-4 py-2 text-xs bg-white border-t-0 border-b border-x-0 border-base-300 focus:outline-none focus:border focus:ring-base-500 focus:border-base-500 placeholder-base-500"
         />
         <div
           id="searchResults"
           class="w-full mt-2 overflow-hidden overflow-y-auto bg-white max-h-100 divide-y divide-base-200 scrollbar-hide"
         >
-         
         </div>
       </div>
     </div>
@@ -153,7 +152,7 @@ const posts = await Promise.all(
               <h3  class="block mt-2 text-sm font-medium text-black">
                 ${result.item.title}
               </h3>
-              <p  class="block text-xs text-base-500">
+              <p  class="block text-xs text-base-600">
                 ${result.item.description}
               </p>
             </a>

@@ -27,7 +27,11 @@ const formattedAuthor = formatAuthorName(author);
 ---
 
 <article class="relative">
-  <a href={url} title={title} aria-label={`Read more about ${title}`} class="absolute inset-0"></a>
+  <a
+    href={url}
+    title={title}
+    aria-label={`Read more about ${title}`}
+    class="absolute inset-0"></a>
 
   <Image
     src={image}
@@ -45,7 +49,7 @@ const formattedAuthor = formatAuthorName(author);
     <Text tag="h2" variant="textb" class="mt-1 font-medium">
       {formattedAuthor} — {title}
     </Text>
-    <Text tag="p" variant="textSM" class="mt-1 text-base-500">
+    <Text tag="p" variant="textSM" class="mt-1 text-base-600">
       {description}
     </Text>
   </div>

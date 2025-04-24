@@ -54,7 +54,7 @@ const relatedPosts = allPosts.filter((post) =>
                 </button>
                 <button
                   id="playPauseBtn"
-                  class="rounded-lg bg-white p-1.5 text-base-500  hover:bg-base-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus:outline-base-400 cursor-pointer focus:outline-2 focus:outline-inset"
+                  class="rounded-lg bg-white p-1.5 text-base-600  hover:bg-base-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus:outline-base-400 cursor-pointer focus:outline-2 focus:outline-inset"
                 >
                   <Play id="playIcon" class="size-5 " />
                   <Pause id="pauseIcon" class="size-5 hidden" />
@@ -68,7 +68,7 @@ const relatedPosts = allPosts.filter((post) =>
                 </button>
                 <audio id="audioElement" src={frontmatter.audioSrc} />
                 <span
-                  class="text-xs text-base-500 hidden sm:flex"
+                  class="text-xs text-base-600 hidden sm:flex"
                   id="currentTime"
                 >
                   00:00
@@ -82,7 +82,7 @@ const relatedPosts = allPosts.filter((post) =>
                   class=" hidden sm:flex w-full"
                 />
                 <span
-                  class="text-xs text-base-500 hidden sm:flex"
+                  class="text-xs text-base-600 hidden sm:flex"
                   id="duration"
                 >
                   00:00
@@ -103,7 +103,7 @@ const relatedPosts = allPosts.filter((post) =>
           <Text
             tag="h1"
             variant="displayMD"
-            class="font-serif font-light leading-6 md:leading-8 text-base-500"
+            class="font-serif font-light leading-6 md:leading-8 text-base-600"
           >
             <span class="text-black"> {frontmatter.title}</span> —
             {frontmatter.description} —</Text

@@ -129,7 +129,7 @@ const posts = await Promise.all(
       if (results.length === 0) {
         searchResults.innerHTML = `
         <div>
-            <h3 class="font-medium text-base p-4 text-base-500 font-medium">
+            <h3 class="font-medium text-base p-4 text-base-600 font-medium">
               There's nothing here,...
             </h3>
         </div>
@@ -142,7 +142,7 @@ const posts = await Promise.all(
         .map(
           (result) => `
             <a href="/blog/posts/${result.item.slug}" class="block p-4  duration-300 hover:bg-black/5">
-            <p class="text-sm text-base-500 text-xs block">
+            <p class="text-sm text-base-600 text-xs block">
   ${new Date(result.item.pubDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",

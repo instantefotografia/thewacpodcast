@@ -38,11 +38,16 @@ allPosts.sort((a, b) => {
           Our most popular posts post
         </Text>
         <Link
-          size="xs"
-          variant="default"
-          href="/blog/home"
-          class="w-auto text-center">Read them all</Link
-        >
+        size="xs"
+        variant="default"
+        href="/blog/home"
+        class="w-auto text-center"
+        aria-label="Read all blog posts"
+        title="Read all blog posts"
+      >
+        Read them all
+      </Link>
+      
       </div>
       <div
         class="grid border-t border-black pt-4 mt-4 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
@@ -62,11 +67,16 @@ allPosts.sort((a, b) => {
           Recent podcast interviews
         </Text>
         <Link
-          size="xs"
-          variant="default"
-          class="w-auto text-center"
-          href="/podcast/home">Listen to them all</Link
-        >
+        size="xs"
+        variant="default"
+        class="w-auto text-center"
+        href="/podcast/home"
+        aria-label="Listen to all podcast episodes"
+        title="Listen to all podcast episodes"
+      >
+        Listen to them all
+      </Link>
+      
       </div>
       <div
         class="border-t border-black pt-4 mt-4 flex flex-col items-start divide-y"

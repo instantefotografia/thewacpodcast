@@ -29,8 +29,10 @@ const formattedAuthor = formatAuthorName(author);
 <article class="relative">
   <Image
     src={image}
-    width="1000"
-    height="1000"
+    width="500"
+    height="500"
+    loading="eager"
+    decoding="async"
     class="aspect-square object-cover"
     alt={title}
   />

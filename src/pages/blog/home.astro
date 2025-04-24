@@ -25,7 +25,7 @@ allPosts.sort((a, b) => {
   <section>
     <Wrapper variant="standard" class="pt-32 pb-12">
       <div
-        class="grid border-t border-black pt-4 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-12"
+        class="items-start pt-4 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-x-4 gap-y-12"
       >
         {allPosts.map((post) => <BlogEntry1 post={post} />)}
       </div>
@@ -34,11 +34,11 @@ allPosts.sort((a, b) => {
   
   <section>
     <Wrapper variant="standard" class="pt-32 pb-12">
-      <Text tag="p" variant="textSM" class="uppercase font-medium">
+      <Text tag="p" variant="textSM" class="font-medium uppercase">
         Subscribers only
       </Text>
       <div
-        class="grid border-t border-black pt-4 mt-4 items-start grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-2"
+        class="items-start pt-4 mt-4 border-t border-black grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-2"
       >
         {
           allPosts

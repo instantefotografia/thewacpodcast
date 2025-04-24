@@ -27,7 +27,7 @@ allPodcasts.sort((a, b) => {
   <section>
     <Wrapper variant="standard" class="pt-32 pb-12">
       <div
-        class="border-t border-black pt-4 flex flex-col items-start divide-y"
+        class="flex flex-col items-start pt-4 border-t border-black divide-y"
       >
         {allPodcasts.map((post) => <PodcastEntry2 post={post} />)}
       </div>
@@ -35,12 +35,12 @@ allPodcasts.sort((a, b) => {
   </section>
   <section>
     <Wrapper variant="standard" class="pt-32 pb-12">
-      <Text tag="p" variant="textSM" class="uppercase font-medium">
+      <Text tag="p" variant="textSM" class="font-medium uppercase">
         Subscribers only
       </Text>
 
       <div
-        class="grid border-t border-black pt-4 mt-4 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
+        class="items-start pt-4 mt-4 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
       >
         {
           allPodcasts

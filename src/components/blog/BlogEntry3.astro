@@ -6,8 +6,16 @@ const { url, title } = {
   title: Astro.props.post.data.title,
 };
 ---
+
 <article>
-  <Text href={url} title={title} tag="a" variant="textSM" class="upperase  font-serif text-base-600 hover:underline ">
-    {title}äonåuåh
+  <Text
+    href={url}
+    title={title}
+    aria-label={`Read blog post: ${title}`}
+    tag="a"
+    variant="textSM"
+    class="font-serif uppercase text-base-600 hover:underline"
+  >
+    {title}
   </Text>
 </article>

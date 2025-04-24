@@ -43,8 +43,8 @@ const relatedPosts = allPosts.filter((post) =>
       <div>
         {
           frontmatter.audioSrc && (
-            <div class="audio-player  border border-black mt-8 p-8">
-              <div class="flex items-center gap-2 justify-between w-full">
+            <div class="p-8 mt-8 border border-black audio-player ">
+              <div class="flex items-center justify-between w-full gap-2">
                 <button
                   id="backwardBtn"
                   class="rounded-lg bg-white p-1.5 text-base-600  hover:bg-base-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus:outline-base-400 cursor-pointer focus:outline-2 focus:outline-inset"
@@ -57,7 +57,7 @@ const relatedPosts = allPosts.filter((post) =>
                   class="rounded-lg bg-white p-1.5 text-base-600  hover:bg-base-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus:outline-base-400 cursor-pointer focus:outline-2 focus:outline-inset"
                 >
                   <Play id="playIcon" class="size-5 " />
-                  <Pause id="pauseIcon" class="size-5 hidden" />
+                  <Pause id="pauseIcon" class="hidden size-5" />
                 </button>
                 <button
                   id="forwardBtn"
@@ -68,7 +68,7 @@ const relatedPosts = allPosts.filter((post) =>
                 </button>
                 <audio id="audioElement" src={frontmatter.audioSrc} />
                 <span
-                  class="text-xs text-base-600 hidden sm:flex"
+                  class="hidden text-xs text-base-600 sm:flex"
                   id="currentTime"
                 >
                   00:00
@@ -79,10 +79,10 @@ const relatedPosts = allPosts.filter((post) =>
                   value="0"
                   step="1"
                   min="0"
-                  class=" hidden sm:flex w-full"
+                  class="hidden w-full  sm:flex"
                 />
                 <span
-                  class="text-xs text-base-600 hidden sm:flex"
+                  class="hidden text-xs text-base-600 sm:flex"
                   id="duration"
                 >
                   00:00
@@ -93,13 +93,13 @@ const relatedPosts = allPosts.filter((post) =>
                   aria-label="Mute/Unmute"
                 >
                   <Speaker id="speakerIcon" class="size-5 " />
-                  <Mute id="muteIcon" class="size-5 hidden" />
+                  <Mute id="muteIcon" class="hidden size-5" />
                 </button>
               </div>
             </div>
           )
         }
-        <div class="pt-12 max-w-xl mx-auto">
+        <div class="max-w-xl pt-12 mx-auto">
           <Text
             tag="h1"
             variant="displayMD"
@@ -113,7 +113,7 @@ const relatedPosts = allPosts.filter((post) =>
             author && (
               <a
                 href={`/authors/${author.slug}`}
-                class="flex items-center gap-3 hover:opacity-80 transition mt-4"
+                class="flex items-center mt-4 gap-3 hover:opacity-80 transition"
               >
                 {author?.data?.image?.url && (
                   <Image
@@ -121,7 +121,7 @@ const relatedPosts = allPosts.filter((post) =>
                     height={100}
                     src={author.data.image.url}
                     alt={author.data.image.alt}
-                    class="inline-block size-10 object-cover rounded-full object-center"
+                    class="inline-block object-cover object-center rounded-full size-10"
                   />
                 )}
                 <Text tag="p" variant="textXS" class="text-base-500 ">
@@ -157,16 +157,16 @@ const relatedPosts = allPosts.filter((post) =>
 
         {
           frontmatter.isLocked ? (
-            <div class="mt-12 border-t border-black pt-4">
+            <div class="pt-4 mt-12 border-t border-black">
               <Text
                 tag="h4"
                 variant="displaySM"
-                class="text-black text-balance font-serif max-w-4xl tracking-tight mx-auto font-light"
+                class="max-w-4xl mx-auto font-serif font-light tracking-tight text-black text-balance"
               >
                 This episode is for subscribers only. Unlock premium insights by
                 becoming a member.
               </Text>
-              <div class="flex  mt-8 flex-wrap gap-2">
+              <div class="flex flex-wrap mt-8  gap-2">
                 <Link size="sm" variant="muted" href="/forms/login">
                   Log in
                 </Link>
@@ -180,14 +180,14 @@ const relatedPosts = allPosts.filter((post) =>
               <Text
                 tag="h1"
                 variant="textXS"
-                class="uppercase mt-24 lg:mt-40 text-black"
+                class="mt-24 text-black uppercase lg:mt-40"
               >
                 transcript
               </Text>
-              <Wrapper variant="prose" class=" mt-2">
+              <Wrapper variant="prose" class="mt-2 ">
                 <slot />
               </Wrapper>
-              <div class="mt-6 pt-6 border-t border-black">
+              <div class="pt-6 mt-6 border-t border-black">
                 <ShareButtons
                   contentType="podcast"
                   description={frontmatter.description}
@@ -203,10 +203,10 @@ const relatedPosts = allPosts.filter((post) =>
     relatedPosts.length > 0 && (
       <section>
         <Wrapper variant="standard" class="py-8">
-          <Text tag="p" variant="textSM" class="uppercase font-medium">
+          <Text tag="p" variant="textSM" class="font-medium uppercase">
             Related interviews
           </Text>
-          <div class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+          <div class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
             {relatedPosts.map((post) => (
               <PodcastEntry1 post={post} />
             ))}

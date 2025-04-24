@@ -27,18 +27,18 @@ const footerLinks = [
 ];
 ---
 
-<footer class="pb-2 bg-black w-full z-0">
+<footer class="z-0 w-full pb-2 bg-black">
   <Wrapper variant="standard" class="pt-12 lg:pt-12">
     <BigLogo class="max-w-4xl text-white" />
 
     <div
-      class="grid grid-cols-1 mt-12 md:grid-cols-2 gap-y-12 gap-x-12 items-start"
+      class="items-start mt-12 grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-12"
     >
       <div>
         <Text
           tag="p"
           variant="textSM"
-          class="font-serif text-base-400 mt-2 max-w-xs"
+          class="max-w-xs mt-2 font-serif text-base-400"
         >
           Hemingway conducts in-depth interviews with some of the top design
           engineers in the industry, giving you the option to either read the
@@ -70,7 +70,7 @@ const footerLinks = [
               </Text>
               <nav
                 role="navigation"
-                class="flex flex-col gap-2 mt-8"
+                class="flex flex-col mt-8 gap-2"
                 aria-labelledby={section.id}
               >
                 {section.platforms.map((platform, index) => (
@@ -79,7 +79,7 @@ const footerLinks = [
                     variant="textXS"
                     href={platform.link}
                     aria-label={`Go to ${platform.name}`}
-                    class="text-base-300 hover:underline uppercase font-medium"
+                    class="font-medium uppercase text-base-300 hover:underline"
                   >
                     {platform.name}
                   </Text>
@@ -89,7 +89,7 @@ const footerLinks = [
           ))
         }
       </div>
-      <div class="flex items-center gap-2 h-full lg:pt-12">
+      <div class="flex items-center h-full gap-2 lg:pt-12">
         <!-- This link will stick to the bottom -->
         <a href="/" class="mt-auto">
           <Logo class="h-4 text-white" />

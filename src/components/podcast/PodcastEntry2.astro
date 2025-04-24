@@ -28,34 +28,34 @@ const formattedAuthor = formatAuthorName(author);
 ---
 
 <article
-  class="group relative grid grid-cols-2 gap-y-8 py-2 lg:grid-cols-3 overflow-hidden md:col-span-full w-full"
+  class="relative w-full py-2 overflow-hidden group grid grid-cols-2 gap-y-8 lg:grid-cols-3 md:col-span-full"
 >
   <Image
     src={image}
     alt={title}
     width="2000"
     height="2000"
-    class="aspect-square object-cover object-center"
+    class="object-cover object-center aspect-square"
   />
   <Image
     src={guestAvatar}
     alt={title}
     width="2000"
     height="2000"
-    class="aspect-square object-cover object-center lg:order-last"
+    class="object-cover object-center aspect-square lg:order-last"
   />
-  <div class="col-span-full lg:col-span-1  flex flex-col lg:h-full order-first ">
-    <div class="w-2/3  ">
+  <div class="flex flex-col order-first col-span-full lg:col-span-1  lg:h-full">
+    <div class="w-2/3 ">
       <Text tag="p" variant="textXS" class="uppercase  text-base-400">
         <time datetime={pubDate}>{pubDate}</time>
       </Text>
-      <Text tag="h2" variant="textSM" class="font-medium mt-1">
+      <Text tag="h2" variant="textSM" class="mt-1 font-medium">
         {formattedAuthor} —{title}
         <a href={url} title={title}>
           <span class="absolute inset-0"></span>
         </a>
       </Text>
-      <Text tag="p" variant="textSM" class="text-base-500 mt-1">
+      <Text tag="p" variant="textSM" class="mt-1 text-base-500">
         {description}
       </Text>
     </div>

@@ -36,7 +36,7 @@ const { posts } = Astro.props;
       </Text>
 
       <div
-        class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-"
+        class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-"
       >
         {posts.map((post) => <PodcastEntry1 post={post} />)}
       </div>

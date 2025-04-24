@@ -29,11 +29,11 @@ const relatedPosts = allPosts.filter(
     <Wrapper variant="standard">
       <div class="relative">
         <!-- Sticky Text -->
-        <div class="sticky top-0 pt-32 z-10">
+        <div class="sticky top-0 z-10 pt-32">
           <Text
             tag="h1"
             variant="display3XL"
-            class="text-black mix-blend-difference text-center text-balance font-serif max-w-4xl tracking-tight mx-auto font-light"
+            class="max-w-4xl mx-auto font-serif font-light tracking-tight text-center text-black mix-blend-difference text-balance"
           >
             {frontmatter.title}
           </Text>
@@ -45,7 +45,7 @@ const relatedPosts = allPosts.filter(
             height={1000}
             src={frontmatter.image.url}
             alt={frontmatter.image.alt}
-            class="w-full h-auto object-cover max-w-xl mx-auto mt-24"
+            class="object-cover w-full h-auto max-w-xl mx-auto mt-24"
           />
         </div>
       </div>
@@ -59,7 +59,7 @@ const relatedPosts = allPosts.filter(
             author && (
               <a
                 href={`/authors/${author.slug}`}
-                class="flex items-center gap-3 hover:opacity-80 transition justify-center"
+                class="flex items-center justify-center gap-3 hover:opacity-80 transition"
               >
                 {author?.data?.image?.url && (
                   <Image
@@ -67,7 +67,7 @@ const relatedPosts = allPosts.filter(
                     height={100}
                     src={author.data.image.url}
                     alt={author.data.image.alt}
-                    class="inline-block size-10 object-cover rounded-full object-center"
+                    class="inline-block object-cover object-center rounded-full size-10"
                   />
                 )}
                 <Text tag="p" variant="textXS" class="text-base-500 ">
@@ -102,17 +102,17 @@ const relatedPosts = allPosts.filter(
           <Text
             tag="h1"
             variant="displayMD"
-            class="font-serif font-light leading-6 mt-8 md:leading-8 text-base-600 text-center text-balance"
+            class="mt-8 font-serif font-light text-center leading-6 md:leading-8 text-base-600 text-balance"
           >
             {frontmatter.description}</Text
           >
-          <div class="flex justify-center gap-2 mt-4">
+          <div class="flex justify-center mt-4 gap-2">
             {
               frontmatter.tags.map((tag) => (
                 <span>
                   <a
                     href={`/tags/${tag}`}
-                    class="text-base-500 uppercase text-xs font-medium hover:underline"
+                    class="text-xs font-medium uppercase text-base-500 hover:underline"
                   >
                     {tag}
                   </a>
@@ -125,16 +125,16 @@ const relatedPosts = allPosts.filter(
         {
           frontmatter.isLocked ? (
             
-              <div class="text-center py-20">
+              <div class="py-20 text-center">
                 <Text
                   tag="h4"
                   variant="displaySM"
-                  class="text-black  text-center text-balance font-serif max-w-4xl tracking-tight mx-auto font-light"
+                  class="max-w-4xl mx-auto font-serif font-light tracking-tight text-center text-black  text-balance"
                 >
                   This post is for subscribers only. Unlock premium insights by
                   becoming a member.
                 </Text>
-                <div class="flex justify-center mt-8 flex-wrap gap-2">
+                <div class="flex flex-wrap justify-center mt-8 gap-2">
                   <Link size="sm" variant="muted" href="/forms/login">
                     Log in
                   </Link>
@@ -147,7 +147,7 @@ const relatedPosts = allPosts.filter(
             <Wrapper variant="prose" class="max-w-xl mx-auto mt-24">
               <slot />
             </Wrapper>
-               <div class="mt-6 pt-6 border-t border-black">
+               <div class="pt-6 mt-6 border-t border-black">
               <ShareButtons
                       contentType="blog"
                       description={frontmatter.description}
@@ -162,10 +162,10 @@ const relatedPosts = allPosts.filter(
     relatedPosts.length > 0 && (
       <section>
         <Wrapper variant="standard" class="py-8">
-          <Text tag="p" variant="textSM" class="uppercase font-medium">
+          <Text tag="p" variant="textSM" class="font-medium uppercase">
             Related posts
           </Text>
-          <div class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+          <div class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
             {relatedPosts.slice(0, 3).map((post) => (
               <BlogEntry1 post={post} />
             ))}

@@ -21,27 +21,27 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         />
       </div>
       <div
-        class="flex flex-col h-full 2xl:max-w-3xl 2xlmx-auto justify-center p-8 lg:p-20"
+        class="flex flex-col justify-center h-full p-8 2xl:max-w-3xl 2xlmx-auto lg:p-20"
       >
-        <div class="lg:text-balance text-center">
+        <div class="text-center lg:text-balance">
           <Text
             tag="h1"
             variant="display2XL"
-            class="text-black text-center text-balance font-serif tracking-tight font-light"
+            class="font-serif font-light tracking-tight text-center text-black text-balance"
           >
             Contact us!
           </Text>
           <Text
             tag="p"
             variant="textXS"
-            class="uppercase text-base-600 font-medium mt-1"
+            class="mt-1 font-medium uppercase text-base-600"
           >
             If you have questions or need any general information, please
             contact us on this points of refference. It will be an honor to help
             you.
           </Text>
         </div>
-        <form action="#" method="POST" class="mt-8 flex flex-col gap-4">
+        <form action="#" method="POST" class="flex flex-col mt-8 gap-4">
           <!-- Name -->
           <div class="flex flex-col gap-y-1">
             <label class="sr-only" for="name">Name</label>
@@ -53,9 +53,9 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
               aria-required="true"
               aria-describedby="name-error"
               placeholder="Your name"
-              class="w-full py-2 h-8 border-t-0 px-0 border-x-0 bg-transparent border-b border-base-300 text-xs focus:outline-none focus:ring-2 focus:ring-base-500 focus:border-base-500 placeholder-base-500"
+              class="w-full h-8 px-0 py-2 text-xs bg-transparent border-t-0 border-b border-x-0 border-base-300 focus:outline-none focus:ring-2 focus:ring-base-500 focus:border-base-500 placeholder-base-500"
             />
-            <span id="name-error" class="text-red-600 text-sm hidden">
+            <span id="name-error" class="hidden text-sm text-red-600">
               Please enter your name.
             </span>
           </div>
@@ -72,9 +72,9 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
               aria-required="true"
               aria-describedby="email-error"
               placeholder="Your email"
-              class="w-full py-2 h-8 border-t-0 px-0 border-x-0 bg-transparent border-b border-base-300 text-xs focus:outline-none focus:ring-2 focus:ring-base-500 focus:border-base-500 placeholder-base-500"
+              class="w-full h-8 px-0 py-2 text-xs bg-transparent border-t-0 border-b border-x-0 border-base-300 focus:outline-none focus:ring-2 focus:ring-base-500 focus:border-base-500 placeholder-base-500"
             />
-            <span id="email-error" class="text-red-600 text-sm hidden">
+            <span id="email-error" class="hidden text-sm text-red-600">
               Please enter a valid email address.
             </span>
           </div>
@@ -90,9 +90,9 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
               aria-required="true"
               aria-describedby="subject-error"
               placeholder="Subject"
-              class="w-full py-2 h-8 border-t-0 px-0 border-x-0 bg-transparent border-b border-base-300 text-xs focus:outline-none focus:ring-2 focus:ring-base-500 focus:border-base-500 placeholder-base-500"
+              class="w-full h-8 px-0 py-2 text-xs bg-transparent border-t-0 border-b border-x-0 border-base-300 focus:outline-none focus:ring-2 focus:ring-base-500 focus:border-base-500 placeholder-base-500"
             />
-            <span id="subject-error" class="text-red-600 text-sm hidden">
+            <span id="subject-error" class="hidden text-sm text-red-600">
               Please enter a subject.
             </span>
           </div>
@@ -108,26 +108,26 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
               aria-describedby="message-error"
               placeholder="Your message"
               rows="5"
-              class="w-full py-2 px-0 border-t-0 border-x-0 bg-transparent border-b border-base-300 text-xs focus:outline-none focus:ring-2 focus:ring-base-500 focus:border-base-500 placeholder-base-500 resize-none"
+              class="w-full px-0 py-2 text-xs bg-transparent border-t-0 border-b resize-none border-x-0 border-base-300 focus:outline-none focus:ring-2 focus:ring-base-500 focus:border-base-500 placeholder-base-500"
             ></textarea>
-            <span id="message-error" class="text-red-600 text-sm hidden">
+            <span id="message-error" class="hidden text-sm text-red-600">
               Please enter a message.
             </span>
           </div>
 
           <!-- Submit Button -->
-          <div class="w-full flex">
+          <div class="flex w-full">
             <Button size="sm" type="submit" variant="default" class="w-full">
               Send Message
             </Button>
           </div>
 
           <!-- Optional Link -->
-          <div class="flex items-center mt-12 justify-center">
+          <div class="flex items-center justify-center mt-12">
             <Text
               tag="p"
               variant="textXS"
-              class="uppercase text-base-600 font-medium mt-1"
+              class="mt-1 font-medium uppercase text-base-600"
             >
               General Inquiries
               <a

@@ -41,14 +41,14 @@ const podcastPlatforms = [
 
 <section id="navigation" class="z-10 bg-white">
   <Wrapper variant="standard" class="pt-2 wrapper-class">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 items-start w-full pb-4">
+    <div class="items-start w-full pb-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
       <!-- Header content -->
       <div class="col-span-2 md:col-span-1">
         <a href="/">
           <Text
             tag="p"
             variant="textXS"
-            class="text-black font-medium hover:text-base-600 uppercase"
+            class="font-medium text-black uppercase hover:text-base-600"
           >
             Innovative Design Conversations — <span class="text-base-500"
               >editorial</span
@@ -57,19 +57,19 @@ const podcastPlatforms = [
         </a>
       </div>
 
-      <div class="ml-auto gap-4 flex items-center col-start-3">
+      <div class="flex items-center ml-auto gap-4 col-start-3">
         <Text
           tag="a"
           variant="textXS"
           href="/system/overview"
-          class="uppercase text-black hover:text-base-500 font-medium"
+          class="font-medium text-black uppercase hover:text-base-500"
         >
           overview
         </Text>
         <button
           id="menubutton"
           type="button"
-          class="uppercase text-black w-12 text-right hover:text-base-500 font-medium text-xs"
+          class="w-12 text-xs font-medium text-right text-black uppercase hover:text-base-500"
           aria-controls="menu"
           aria-label="Toggle menu"
         >
@@ -83,9 +83,9 @@ const podcastPlatforms = [
       id="menu"
       role="navigation"
       aria-labelledby="menubutton"
-      class="relative overflow-hidden border-y bg-white"
+      class="relative overflow-hidden bg-white border-y"
     >
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-2 pb-12 pt-6 mb-4">
+      <div class="pt-6 pb-12 mb-4 grid grid-cols-1 md:grid-cols-4 gap-2">
         <a href="/">
           <Logo class="h-8" />
         </a>
@@ -99,7 +99,7 @@ const podcastPlatforms = [
             >
               Interviews
             </Text>
-            <div class="md:flex flex-col hidden mt-1">
+            <div class="flex-col hidden mt-1 md:flex">
               {allPodcasts.map((post) => <PodcastEntry3 post={post} />)}
             </div>
           </div>
@@ -112,13 +112,13 @@ const podcastPlatforms = [
             >
               Listen on
             </Text>
-            <nav class="flex flex-col gap-1 mt-1">
+            <nav class="flex flex-col mt-1 gap-1">
               {
                 podcastPlatforms.map((platform) => (
                   <Text
                     tag="a"
                     variant="textXS"
-                    class="text-base-500 font-serif hover:underline font-medium"
+                    class="font-serif font-medium text-base-500 hover:underline"
                     href={platform.link}
                   >
                     {platform.name}
@@ -137,7 +137,7 @@ const podcastPlatforms = [
           >
             Blog
           </Text>
-          <div class="md:grid grid-cols-1 gap-2 lg:grid-cols-2 mt-1 hidden">
+          <div class="hidden mt-1 md:grid grid-cols-1 gap-2 lg:grid-cols-2">
             {allPosts.slice(0, 2).map((post) => <BlogEntry1 post={post} />)}
           </div>
         </div>

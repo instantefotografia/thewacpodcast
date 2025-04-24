@@ -15,7 +15,7 @@ const posts = await Promise.all(
     type="button"
     id="searchButton"
     aria-label="Search posts"
-    class="text-black h-auto flex items-center"
+    class="flex items-center h-auto text-black"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const posts = await Promise.all(
   </button>
   <div
     id="searchModal"
-    class="fixed inset-0 z-50 overflow-y-auto hidden"
+    class="fixed inset-0 z-50 hidden overflow-y-auto"
     role="dialog"
     aria-modal="true"
   >
@@ -40,13 +40,13 @@ const posts = await Promise.all(
       >
       </div>
       <div
-        class="inline-block w-full max-w-2xl  mb-8 mt-12 lg:mt-48 p-2 bg-white outline-2 outline-black  text-left align-middle transition-all transform"
+        class="inline-block w-full max-w-2xl p-2 mt-12 mb-8 text-left align-middle bg-white  lg:mt-48 outline-2 outline-black transition-all transform"
       >
         <div class="hidden">
           <button
             type="button"
             id="closeSearch"
-            class="text-base-400 hover:text-base-500 cursor-pointer ml-auto"
+            class="ml-auto cursor-pointer text-base-400 hover:text-base-500"
             aria-label="Close search"
           >
             <svg
@@ -67,11 +67,11 @@ const posts = await Promise.all(
           type="text"
           id="searchInput"
           placeholder="Search posts..."
-          class="w-full py-2 h-8 border-t-0 px-4 border-x-0  border-b border-base-300 text-xs focus:outline-none focus:border focus:ring-base-500 focus:border-base-500 placeholder-base-500 bg-white"
+          class="w-full h-8 px-4 py-2 text-xs bg-white border-t-0 border-b border-x-0  border-base-300 focus:outline-none focus:border focus:ring-base-500 focus:border-base-500 placeholder-base-500"
         />
         <div
           id="searchResults"
-          class="max-h-100 overflow-y-auto mt-2 bg-white overflow-hidden w-full divide-y divide-base-200 scrollbar-hide"
+          class="w-full mt-2 overflow-hidden overflow-y-auto bg-white max-h-100 divide-y divide-base-200 scrollbar-hide"
         >
          
         </div>
@@ -129,7 +129,7 @@ const posts = await Promise.all(
       if (results.length === 0) {
         searchResults.innerHTML = `
         <div>
-            <h3 class="font-medium text-base p-4 text-base-600 font-medium">
+            <h3 class="p-4 text-base font-medium text-base-600">
               There's nothing here,...
             </h3>
         </div>
@@ -142,7 +142,7 @@ const posts = await Promise.all(
         .map(
           (result) => `
             <a href="/blog/posts/${result.item.slug}" class="block p-4  duration-300 hover:bg-black/5">
-            <p class="text-sm text-base-600 text-xs block">
+            <p class="block text-xs text-sm text-base-600">
   ${new Date(result.item.pubDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -150,10 +150,10 @@ const posts = await Promise.all(
   })}
             </p>
 
-              <h3  class="font-medium text-sm mt-2 text-black block">
+              <h3  class="block mt-2 text-sm font-medium text-black">
                 ${result.item.title}
               </h3>
-              <p  class="text-base-500 text-xs block">
+              <p  class="block text-xs text-base-500">
                 ${result.item.description}
               </p>
             </a>

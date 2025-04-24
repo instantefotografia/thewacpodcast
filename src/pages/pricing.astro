@@ -82,11 +82,11 @@ const pricingPlans = [
       </div>
 
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-32 mt-2 pt-12 border-t border-black"
+        class="pt-12 mt-2 border-t border-black grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-32"
       >
         {
           pricingPlans.map((plan) => (
-            <div class="h-full flex flex-col justify-between gap-12">
+            <div class="flex flex-col justify-between h-full gap-12">
               <div>
                 <Text
                   tag="p"
@@ -95,19 +95,19 @@ const pricingPlans = [
                 >
                   {plan.price}
                 </Text>
-                <Text tag="p" variant="textXS" class="text-base-500 font-serif">
+                <Text tag="p" variant="textXS" class="font-serif text-base-500">
                   {plan.period}
                 </Text>
                 <Text
                   tag="h3"
                   variant="textXS"
-                  class="uppercase mt-8 font-medium text-black"
+                  class="mt-8 font-medium text-black uppercase"
                 >
                   {plan.title}
                 </Text>
-                <ul class="mt-4 space-y-3 text-sm">
+                <ul class="mt-4 text-sm space-y-3">
                   {plan.features.map((feature, i) => (
-                    <li class=" list-disc font-serif text-base-600">
+                    <li class="font-serif list-disc  text-base-600">
                        {feature}
                     </li>
                   ))}

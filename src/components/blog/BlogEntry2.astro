@@ -14,36 +14,36 @@ const { url, title, description, pubDate, image } = {
     day: "2-digit",
   }),
 };
-
 ---
+
 <article class="relative">
+  <a
+    href={url}
+    title={title}
+    aria-label={`Read more about ${title}`}
+    class="absolute inset-0"></a>
+
   <div class="relative">
-    <!-- Image Container with Overlay -->
-    <div class="relative">
-      <Image
-        src={image}
-        width="1000"
-        height="1000"
-        class="aspect-square object-cover"
-        alt={title}
-      />
-      <!-- Black Overlay (only on the image) -->
-      <div class="bg-black/60 absolute inset-0 z-10"></div>
-    </div>
-    <!-- Text Container (positioned above the image and overlay) -->
-    <div class="absolute inset-0 p-4 flex flex-col justify-end z-20">
-      <Text tag="p" variant="textXS" class="uppercase text-white">
-        <time datetime={pubDate}>{pubDate}</time>
-      </Text>
-      <Text tag="h2" variant="textSM" class="font-medium text-white mt-1">
-        {title}
-        <a href={url} title={title}>
-          <span class="absolute inset-0"></span>
-        </a>
-      </Text>
-      <Text tag="p" variant="textSM" class="text-white mt-1">
-        {description}
-      </Text>
-    </div>
+    <Image
+      src={image}
+      width="1000"
+      height="1000"
+      class="object-cover aspect-square"
+      alt={title}
+    />
+
+    <div class="absolute inset-0 z-10 bg-black/60"></div>
+  </div>
+
+  <div class="absolute inset-0 z-20 flex flex-col justify-end p-4">
+    <Text tag="p" variant="textXS" class="text-white uppercase">
+      <time datetime={pubDate}>{pubDate}</time>
+    </Text>
+    <Text tag="h2" variant="textSM" class="mt-1 font-medium text-white">
+      {title}
+    </Text>
+    <Text tag="p" variant="textSM" class="mt-1 text-white">
+      {description}
+    </Text>
   </div>
 </article>

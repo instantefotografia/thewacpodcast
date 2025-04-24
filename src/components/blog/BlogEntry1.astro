@@ -27,26 +27,25 @@ const formattedAuthor = formatAuthorName(author);
 ---
 
 <article class="relative">
+  <a href={url} title={title} aria-label={`Read more about ${title}`} class="absolute inset-0"></a>
+
   <Image
     src={image}
     width="500"
     height="500"
     loading="eager"
     decoding="async"
-    class="aspect-square object-cover"
+    class="object-cover aspect-square"
     alt={title}
   />
   <div class="mt-4">
     <Text tag="p" variant="textXS" class="uppercase text-base-400">
       <time datetime={pubDate}>{pubDate}</time>
     </Text>
-    <Text tag="h2" variant="textb" class="font-medium mt-1">
+    <Text tag="h2" variant="textb" class="mt-1 font-medium">
       {formattedAuthor} — {title}
-      <a href={url} title={title}>
-        <span class="absolute inset-0"></span>
-      </a>
     </Text>
-    <Text tag="p" variant="textSM" class="text-base-500 mt-1">
+    <Text tag="p" variant="textSM" class="mt-1 text-base-500">
       {description}
     </Text>
   </div>

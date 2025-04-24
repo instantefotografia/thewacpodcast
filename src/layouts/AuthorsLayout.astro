@@ -48,7 +48,7 @@ const relatedPodcasts = allPodcasts.filter(
             <Text
               tag="h1"
               variant="display3XL"
-              class="text-black font-serif tracking-tight font-light"
+              class="font-serif font-light tracking-tight text-black"
             >
               {frontmatter.name}
             </Text>
@@ -57,13 +57,13 @@ const relatedPodcasts = allPodcasts.filter(
                 <Text
                   tag="p"
                   variant="textXS"
-                  class="uppercase text-base-600 font-medium mt-1"
+                  class="mt-1 font-medium uppercase text-base-600"
                 >
                   {frontmatter.role}
                 </Text>
               )
             }
-            <div class="flex flex-col h-full justify-between mt-4">
+            <div class="flex flex-col justify-between h-full mt-4">
               {
                 frontmatter.bio && (
                   <div class="flex flex-col gap-2">
@@ -71,7 +71,7 @@ const relatedPodcasts = allPodcasts.filter(
                       <Text
                         tag="p"
                         variant="textSM"
-                        class="text-base-500 font-serif"
+                        class="font-serif text-base-500"
                       >
                         {paragraph}
                       </Text>
@@ -82,7 +82,7 @@ const relatedPodcasts = allPodcasts.filter(
               {/* Social Media Links */}
               {
                 frontmatter.socials && (
-                  <div class="mt-12 gap-4 flex items-center">
+                  <div class="flex items-center mt-12 gap-4">
                     {frontmatter.socials.twitter && (
                       <a
                         href={frontmatter.socials.twitter}
@@ -126,10 +126,10 @@ const relatedPodcasts = allPodcasts.filter(
       {
         relatedPosts.length > 0 && (
           <div>
-            <Text tag="p" variant="textSM" class="uppercase font-medium">
+            <Text tag="p" variant="textSM" class="font-medium uppercase">
               More articles from {authorSlug}
             </Text>
-            <div class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-8">
+            <div class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-8">
               {relatedPosts.map((post) => (
                 <BlogEntry1 post={post} />
               ))}
@@ -144,10 +144,10 @@ const relatedPodcasts = allPodcasts.filter(
       {
         relatedPodcasts.length > 0 && (
           <div >
-            <Text tag="p" variant="textSM" class="uppercase font-medium">
+            <Text tag="p" variant="textSM" class="font-medium uppercase">
               Interviews with {authorSlug}
             </Text>
-            <div class="grid border-t border-black pt-2 mt-2 items-start grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-8">
+            <div class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-8">
               {relatedPodcasts.map((episode) => (
                 <BlogEntry1 post={episode} />
               ))}

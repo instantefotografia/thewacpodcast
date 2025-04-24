@@ -8,12 +8,11 @@ bio: |
 
   Whether discussing the latest in eSports or the rise of interactive fan experiences, Jordan provides insightful commentary on the ever-changing landscape of sports and its relationship with technology.
 image:
-  url: "/images/authors/5.jpg"
+  url: "/src/images/authors/5.jpg"
   alt: "Jordan Wells"
 socials:
   twitter: "#_"
   website: "#_"
   linkedin: "#_"
   email: "#_"
-
 ---

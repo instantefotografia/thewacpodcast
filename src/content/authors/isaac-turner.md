@@ -8,12 +8,11 @@ bio: |
 
   Whether examining the impact of new technologies or the revival of past trends, Isaac's writing is an insightful commentary on the cultural forces that influence us all.
 image:
-  url: "/images/authors/2.jpg"
+  url: "/src/images/authors/2.jpg"
   alt: "Isaac Turner"
 socials:
   twitter: "#_"
   website: "#_"
   linkedin: "#_"
   email: "#_"
-
 ---

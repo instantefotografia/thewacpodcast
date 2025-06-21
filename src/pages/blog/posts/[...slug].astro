@@ -1,17 +1,38 @@
 ---
+// src/pages/blog/posts/[slug].astro
 import { getCollection } from "astro:content";
 import BlogLayout from "@/layouts/BlogLayout.astro";
+
 export async function getStaticPaths() {
   const blog = await getCollection("posts");
   return blog.map((entry) => ({
     params: { slug: entry.slug },
-    props: { entry },
-  }))
+    props: { slug: entry.slug },
+  }));
 }
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+
+const { slug } = Astro.props;
+
+// Re-fetch and sort all posts
+const allPosts = await getCollection("posts");
+
+const validPosts = allPosts.filter(
+  (item) => item.data?.pubDate && item.data?.title
+);
+
+const sorted = validPosts.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+const index = sorted.findIndex((item) => item.slug === slug);
+const currentPost = sorted[index];
+const previous = sorted[index - 1] || null;
+const next = sorted[index + 1] || null;
+
+const { Content } = await currentPost.render();
 ---
 
-<BlogLayout frontmatter={entry.data}>
+<BlogLayout frontmatter={currentPost.data} previous={previous} next={next}>
   <Content />
 </BlogLayout>

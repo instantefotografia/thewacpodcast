@@ -6,6 +6,10 @@ import BaseHead from "@/components/fundations/head/BaseHead.astro";
 import Footer from "@/components/global/Footer.astro";
 import Navigation from "@/components/global/Navigation.astro";
 import AudioPlayerScript from "@/components/fundations/scripts/AudioPlayerScript.astro";
+// Hides nav and footer on selected screens by passing
+// the hideNav and hideFooter props
+// <BaseLayout hideNav={true} hideFooter={true}>
+const { hideNav = false, hideFooter = false } = Astro.props;
 ---
 
 <html lang="en">
@@ -13,9 +17,10 @@ import AudioPlayerScript from "@/components/fundations/scripts/AudioPlayerScript
     <BaseHead />
   </head>
   <body class="flex flex-col bg-white min-h-svh">
-    <Navigation />
+    {!hideNav && <Navigation />}
+
     <main class="grow"><slot /></main>
-    <Footer />
+    { !hideFooter && <Footer /> }
     <!-- Scripts -->
     <AudioPlayerScript />
   </body>

@@ -37,6 +37,13 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro --help` | Get help using the Astro CLI                     |
 
 Learn more - Explore more through Astro's official [documentation](https://docs.astro.build).
+
+----------------------------
+Updated on 21st Jun 2025
+- Added  blog and podcasts pages with pagination
+- Added pagination on blog posts and podcasts interviews
+- New navigation
+- New auth pages
 ------
 Updated on 08th April 2025
 ## This update includes:

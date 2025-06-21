@@ -53,9 +53,10 @@ const pageSections = [
     title: "Content Collections",
     columns: [
       {
-        category: "Blog Pages",
+        category: "Blog ",
         links: [
-          { text: "Blog home", href: "/blog/home" },
+          { text: "Home", href: "/" },
+          { text: "Home pagination", href: "/blog/" },
           { text: "Blog Post open", href: "/blog/posts/2" },
           { text: "Blog Post paywall", href: "/blog/posts/1" },
           { text: "Tag Index", href: "/blog/tags" },
@@ -101,14 +102,14 @@ const pageSections = [
       <Text tag="h1" variant="textXS" class="font-medium text-black uppercase">
         Overview
       </Text>
-      <div class="max-w-xs mt-12 grid grid-cols-2 md:grid-cols-2 gap-4">
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
         {
           pageSections.map((section) => (
             <div>
               <Text tag="h3" variant="textBase" class="font-serif text-black ">
                 {section.title}
               </Text>
-              <div class="flex flex-col mt-4  gap-8 lg:col-span-3">
+              <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mt-4  gap-8 lg:col-span-3">
                 {section.columns.map((column) => (
                   <div class="flex flex-col gap-">
                     <Text

@@ -1,9 +1,127 @@
 ---
 // Fundations
+// Assets
+import { Image } from "astro:assets";
+import contact from "@/images/contact.jpeg";
+// Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-// Sections
-import ContactPage from "@/components/forms/Contact.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Button from "@/components/fundations/elements/Button.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
+
 <BaseLayout>
-  <ContactPage />
+  <div class="w-full max-w-md px-8 py-24 mx-auto lg:py-32">
+    <div class="text-center lg:text-balance">
+      <Text
+        tag="h1"
+        variant="displayXL"
+        class="font-serif font-light tracking-tight text-center text-black text-balance"
+      >
+        Contact us!
+      </Text>
+      <Text
+        tag="p"
+        variant="textXS"
+        class="mt-1 font-medium uppercase text-base-600"
+      >
+        If you have questions or need any general information, please contact us
+        on this points of refference. It will be an honor to help you.
+      </Text>
+    </div>
+    <form action="#" method="POST" class="flex flex-col mt-8 gap-4">
+      <!-- Name -->
+      <div class="flex flex-col gap-y-1">
+        <label class="text-base-600 text-xs" for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          required
+          aria-required="true"
+          aria-describedby="name-error"
+          class="w-full h-8 px-0 py-2 text-xs bg-transparent border-0 border-b border-base-300 placeholder-base-500 focus:outline-none focus:ring-0 focus:border-base-500"
+        />
+        <span id="name-error" class="hidden text-sm text-red-600">
+          Please enter your name.
+        </span>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="text-base-600 text-xs" for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          autocomplete="emmail"
+          required
+          aria-required="true"
+          aria-describedby="email-error"
+          class="w-full h-8 px-0 py-2 text-xs bg-transparent border-0 border-b border-base-300 placeholder-base-500 focus:outline-none focus:ring-0 focus:border-base-500"
+        />
+        <span id="email-error" class="hidden text-sm text-red-600">
+          Please enter a valid email address.
+        </span>
+      </div>
+
+      <!-- Subject -->
+      <div>
+        <label class="text-base-600 text-xs" for="subject">Subject</label>
+        <input
+          type="text"
+          name="subject"
+          id="subject"
+          required
+          aria-required="true"
+          aria-describedby="subject-error"
+          class="w-full h-8 px-0 py-2 text-xs bg-transparent border-0 border-b border-base-300 placeholder-base-500 focus:outline-none focus:ring-0 focus:border-base-500"
+        />
+        <span id="subject-error" class="hidden text-sm text-red-600">
+          Please enter a subject.
+        </span>
+      </div>
+
+      <!-- Message -->
+      <div>
+        <label class="text-base-600 text-xs" for="message">Message</label>
+        <textarea
+          name="message"
+          id="message"
+          required
+          aria-required="true"
+          aria-describedby="message-error"
+          rows="5"
+          class="w-full px-0 py-2 text-xs bg-transparent border-0 border-b border-base-300 placeholder-base-500 focus:outline-none focus:ring-0 focus:border-base-500"
+        ></textarea>
+        <span id="message-error" class="hidden text-sm text-red-600">
+          Please enter a message.
+        </span>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex w-full">
+        <Button size="sm" type="submit" variant="default" class="w-full">
+          Send Message
+        </Button>
+      </div>
+
+      <!-- Optional Link -->
+      <div class="flex items-center justify-center mt-12">
+        <Text
+          tag="p"
+          variant="textXS"
+          class="mt-1 font-medium uppercase text-base-600"
+        >
+          General Inquiries
+          <a
+            href="mailto:hello@echopodcast.com"
+            class="text-black hover:underline"
+          >
+            hello@example.com
+          </a>
+        </Text>
+      </div>
+    </form>
+  </div>
 </BaseLayout>

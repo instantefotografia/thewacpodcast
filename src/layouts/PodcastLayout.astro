@@ -19,7 +19,7 @@ import PodcastEntry1 from "@/components/podcast/PodcastEntry1.astro";
 // Sections
 import Subscribe from "@/components/blog/Subscribe.astro";
 // Props
-const { frontmatter } = Astro.props;
+const { frontmatter, previous, next } = Astro.props;
 import { getEntry } from "astro:content";
 const author = await getEntry("authors", frontmatter.author);
 // Get all posts and filter by tag
@@ -199,6 +199,36 @@ const relatedPosts = allPosts.filter((post) =>
       </div>
     </Wrapper>
   </section>
+  <Wrapper variant="standard" class="pb-24 pt-8">
+    <nav
+      class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs"
+    >
+      {
+        previous && (
+          <a
+            href={`/podcast/interviews/${previous.slug}`}
+            class="hover:opacity-80 "
+          >
+            <span class="block  text-black font-medium uppercase">
+              Previous:
+            </span>
+            <span class="block  text-base-600"> {previous.data.title}</span>
+          </a>
+        )
+      }
+      {
+        next && (
+          <a
+            href={`/podcast/interviews/${next.slug}`}
+            class=" hover:opacity-80 text-right"
+          >
+            <span class="block  text-black font-medium uppercase ">Next:</span>
+            <span class="block  text-base-600"> {next.data.title}</span>
+          </a>
+        )
+      }
+    </nav>
+  </Wrapper>
   {
     relatedPosts.length > 0 && (
       <section>

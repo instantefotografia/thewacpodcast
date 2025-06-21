@@ -15,7 +15,6 @@ allPodcasts.sort((a, b) => {
 import BlogEntry1 from "@/components/blog/BlogEntry1.astro";
 import PodcastEntry3 from "@/components/podcast/PodcastEntry3.astro";
 import BlogSearch from "@/components/blog/BlogSearch.astro";
-
 // Get all posts
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
@@ -39,75 +38,97 @@ const podcastPlatforms = [
 ];
 ---
 
-<section id="navigation" class="z-10 bg-white">
-  <Wrapper variant="standard" class="pt-2 wrapper-class">
-    <div class="items-start w-full pb-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
-      <!-- Header content -->
-      <div class="col-span-2 md:col-span-1">
+<section id="navigation" class="z-10">
+  <Wrapper variant="standard">
+    <div class="pt-2">
+      <div class="w-full grid grid-cols-3 gap-4 lg:gap-12 lg:h-5 items-center">
         <a href="/">
-          <Text
-            tag="p"
-            variant="textXS"
-            class="font-medium text-black uppercase hover:text-base-600"
-          >
-            Innovative Design Conversations — <span class="text-base-600"
-              >editorial</span
-            >
-          </Text>
+          <Logo class="h-6" />
         </a>
-      </div>
 
-      <div class="flex items-center ml-auto gap-4 col-start-3">
-        <Text
-          tag="a"
-          variant="textXS"
-          href="/system/overview"
-          class="font-medium text-black uppercase hover:text-base-600"
+        <div
+          class="flex items-center w-full col-span-2 gap-2 lg:col-span-auto lg:col-start-3"
         >
-          overview
-        </Text>
-        <button
-          id="menubutton"
-          type="button"
-          class="w-12 text-xs font-medium text-right text-black uppercase hover:text-base-600"
-          aria-controls="menu"
-          aria-label="Toggle menu"
-        >
-          menu
-        </button>
-        <BlogSearch />
+          <BlogSearch />
+          <a
+            href="/system/overview"
+            class="uppercase text-black hover:text-base-500 font-medium text-xs"
+          >
+            Overview
+          </a>
+          <a
+            href="https://buy.polar.sh/polar_cl_U8Mtq7VFohIH4lm7cuCgtyfuB5I0aIhkb6WP0SZGSCA"
+            class="uppercase text-black hover:text-base-500 font-medium text-xs"
+          >
+            Buy Hemingway
+          </a>
+          <button
+            id="menubutton"
+            type="button"
+            aria-controls="menu"
+            aria-expanded="false"
+            aria-label="Toggle menu"
+            class="text-base-900"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="transition duration-300 ease-in-out fill-slate-400 size-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path id="menuIcon" d="M4 8l16 0"></path>
+              <path d="M4 16l16 0"></path>
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-    <!-- Drawer -->
-    <nav
-      id="menu"
-      role="navigation"
-      aria-labelledby="menubutton"
-      class="relative overflow-hidden bg-white border-y"
-    >
-      <div class="pt-6 pb-12 mb-4 grid grid-cols-1 md:grid-cols-4 gap-2">
-        <a href="/">
-          <Logo class="h-8" />
-        </a>
-        <div class="flex flex-col gap-2 lg:gap-8">
+      <nav
+        id="menu"
+        role="navigation"
+        aria-labelledby="menubutton"
+        class="relative mt-8 overflow-hidden"
+      >
+        <div class="pb-8 grid grid-cols-1 md:grid-cols-5 gap-8 border-b">
+          <div class="lg:col-span-3">
+            <Text
+              tag="a"
+              href="/blog/home"
+              variant="textXL"
+              class="font-serif font-light"
+            >
+              From the blog
+            </Text>
+            <div class="mt-1 md:grid grid-cols-1 gap-2 lg:grid-cols-2">
+              {allPosts.slice(0, 2).map((post) => <BlogEntry1 post={post} />)}
+            </div>
+          </div>
           <div>
             <Text
               tag="a"
               href="/interviews/home"
-              variant="displayLG"
+              variant="textXL"
               class="font-serif font-light"
             >
-              Interviews
+              Latest Interviews
             </Text>
-            <div class="flex-col hidden mt-1 md:flex">
-              {allPodcasts.map((post) => <PodcastEntry3 post={post} />)}
+            <div class="flex flex-col gap-2 mt-1">
+              {
+                allPodcasts
+                  .slice(0, 3)
+                  .map((post) => <PodcastEntry3 post={post} />)
+              }
             </div>
           </div>
           <div>
             <Text
               tag="p"
               href="/blog/home"
-              variant="displayLG"
+              variant="textXL"
               class="font-serif font-light"
             >
               Listen on
@@ -128,21 +149,8 @@ const podcastPlatforms = [
             </nav>
           </div>
         </div>
-        <div class="lg:col-span-2">
-          <Text
-            tag="a"
-            href="/blog/home"
-            variant="displayLG"
-            class="font-serif font-light"
-          >
-            Blog
-          </Text>
-          <div class="hidden mt-1 md:grid grid-cols-1 gap-2 lg:grid-cols-2">
-            {allPosts.slice(0, 2).map((post) => <BlogEntry1 post={post} />)}
-          </div>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   </Wrapper>
 </section>
 <style>
@@ -155,7 +163,7 @@ const podcastPlatforms = [
       opacity 0.5s ease-out;
   }
   #menu.expanded {
-    max-height: 100vh;
+    max-height: 1000px; /* Adjust this value based on your content */
     opacity: 1;
   }
 </style>
@@ -163,19 +171,33 @@ const podcastPlatforms = [
   document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.getElementById("menubutton");
     const menu = document.getElementById("menu");
+    const menuIcon = document.getElementById("menuIcon");
+    const tabsList = document.getElementById("tabsList");
+    const tabPanels = document.getElementById("tabPanels");
     let expanded = false;
-
     // Toggle menu
     menuButton.addEventListener("click", () => {
       expanded = !expanded;
       menuButton.setAttribute("aria-expanded", expanded);
       menu.classList.toggle("expanded");
-
-      // Change the text of the menu button
-      if (expanded) {
-        menuButton.textContent = "Close";
-      } else {
-        menuButton.textContent = "Menu";
+      menuIcon.style.opacity = expanded ? "0" : "1";
+    });
+    // Tabs functionality
+    tabsList.addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") {
+        const selectedCategory = e.target.getAttribute("data-category");
+        // Update tab styles
+        tabsList.querySelectorAll("button").forEach((tab) => {
+          tab.classList.toggle("border-accent-500", tab === e.target);
+          tab.classList.toggle("border-transparent", tab !== e.target);
+        });
+        // Show/hide tab panels
+        tabPanels.querySelectorAll("div[data-category]").forEach((panel) => {
+          panel.classList.toggle(
+            "hidden",
+            panel.getAttribute("data-category") !== selectedCategory
+          );
+        });
       }
     });
   });

@@ -1,5 +1,4 @@
 # .pages.yml — Pages CMS config for: posts, authors, podcast, infopages
-# Images stored under: src/images/{about,authors,thumbnails} and loose files
 
 media:
   name: images

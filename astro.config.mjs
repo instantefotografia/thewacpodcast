@@ -5,10 +5,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  redirects: {
-    "/blog": "/blog/1",
-    "/podcast": "/podcast/1",
-  },
+
   vite: {
     plugins: [tailwindcss()],
   },

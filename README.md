@@ -1,14 +1,14 @@
 # Hemmingway
 
 ## Template Integrations
-- Tailwind CSS v4  
+
+- Tailwind CSS v4
 - Astro SEO - Powered by [@astrolib/seo](https://github.com/onwidget/astrolib/tree/main/packages/seo)
 - Astro Sitemap - https://docs.astro.build/en/guides/integrations-guide/sitemap/
 
 ## Template Structure
 
 The template follows a typical Astro project structure. You'll find the following key directories and files:
-
 
 ```
 /
@@ -38,34 +38,54 @@ All commands are run from the root of the project, from a terminal:
 
 Learn more - Explore more through Astro's official [documentation](https://docs.astro.build).
 
-----------------------------
+---
+
+Updated on 31st Dec 2025
+
+- Removed unused icons
+- Moved from Tabler icons to Phosphor icons
+- Button component now has iconsise and passes link
+- CGeneral clean up code
+- Added podcast on Search resuslts
+
+---
+
 Updated on 21st Jun 2025
 
 ### Optional CMS with pagesCMS
 
 This theme includes a ready-to-use [PagesCMS](https://pagescms.org) config file (`.pages.yml`).
-- Optional — delete the file if you don’t want CMS.  But you could keep in case you want to in the future, it won't affect the theme.
-- Zero dependencies — it does not add anything to your code, build or installs.  
-- Instant setup — if you want simple content editing, the config is already there. 
+
+- Optional — delete the file if you don’t want CMS. But you could keep in case you want to in the future, it won't affect the theme.
+- Zero dependencies — it does not add anything to your code, build or installs.
+- Instant setup — if you want simple content editing, the config is already there.
 
 ### Getting Started
-1. Push your project to GitHub, GitLab, or Bitbucket.  
-2. Go to [PagesCMS](https://pagescms.org/) and connect your repository.  
-3. Your content (Markdown, images, etc.) will be editable through the CMS.  
 
-Learn more:  
-- [PagesCMS homepage](https://pagescms.org/)  
-- [Configuration docs](https://pagescms.org/docs/configuration/)  
+1. Push your project to GitHub, GitLab, or Bitbucket.
+2. Go to [PagesCMS](https://pagescms.org/) and connect your repository.
+3. Your content (Markdown, images, etc.) will be editable through the CMS.
 
-----------------------------
+Learn more:
+
+- [PagesCMS homepage](https://pagescms.org/)
+- [Configuration docs](https://pagescms.org/docs/configuration/)
+
+---
+
 Updated on 21st Jun 2025
-- Added  blog and podcasts pages with pagination
+
+- Added blog and podcasts pages with pagination
 - Added pagination on blog posts and podcasts interviews
 - New navigation
 - New auth pages
-------
+
+---
+
 Updated on 08th April 2025
+
 ## This update includes:
+
 - Cleaned design
 - Linked Authors to posts and podcasts
 - Addded related posts and podcasts on authors layout
@@ -73,64 +93,71 @@ Updated on 08th April 2025
 - Addded related posts on posts and podcasts layouts
 - Added flags on blog posts and podcasts
 - Custom audio player
-------
+
+---
+
 Updated on 28th January 2025
+
 ## This update includes:
+
 - Full redesign
------------------------------
+
+---
+
 Updated on 30th December 2024
 
 ## This update includes:
-- Added Tailwind CSS v4 
+
+- Added Tailwind CSS v4
 - Astro V5
 
-On this version, Tailwind CSS is now V4, this means that there's no `tailwind.config.mjs` file anymore. 
+On this version, Tailwind CSS is now V4, this means that there's no `tailwind.config.mjs` file anymore.
 From now on, all style will be added on the `css` file. You can find the styles on the `src/styles/global.css` file.
 
-
 - Astro SEO by @astrolib/seo
-This update includes the integration of the Astro SEO package by @astrolib/seo, is an integration that makes managing your SEO easier in Astro projects. It is fully based on the excellent Next SEO library
-
+  This update includes the integration of the Astro SEO package by @astrolib/seo, is an integration that makes managing your SEO easier in Astro projects. It is fully based on the excellent Next SEO library
 
 - Added Image component from Astro
-The Astro Image component is coming back to the themes
+  The Astro Image component is coming back to the themes
 
 - Reusable components
-This template now includes reusable components, such as the `Text`, `Link`, `Buttons` and `Wrapper` component:
+  This template now includes reusable components, such as the `Text`, `Button`, and `Wrapper` components:
 
 - Text Component  
-A versatile and reusable component for handling text across your project, ensuring consistency and easy customization.  
+  A versatile and reusable component for handling text across your project, ensuring consistency and easy customization.
 
-- **HTML Tags:** Easily change the HTML element (like `p`, `h1`, `span`, `a`) using the `tag` prop, with `p` being the default.  
-- **Variants:** Pick from preset text styles (such as `displayXL` or `textBase`) for a consistent look.  
-- **Custom Classes:** Add or adjust styles with the `class` prop.  
-- **Accessibility:** Customize with additional props like `id`, `href`, `title`, and `style`.  
-- **Content Slot:** Add any content inside the component, including optional left and right icons. 
-Example usage:
+- **HTML Tags:** Easily change the HTML element (like `p`, `h1`, `span`, `a`) using the `tag` prop, with `p` being the default.
+- **Variants:** Pick from preset text styles (such as `displayXL` or `textBase`) for a consistent look.
+- **Custom Classes:** Add or adjust styles with the `class` prop.
+- **Accessibility:** Customize with additional props like `id`, `href`, `title`, and `style`.
+- **Content Slot:** Add any content inside the component, including optional left and right icons.
+  Example usage:
+
 ```astro
 <Text tag="h1" variant="displayXL" class="text-center">
   Welcome to the new version!
 </Text>
-``` 
+```
 
 - Button Component  
-A customizable button component with options to fit your design needs:  
+  A customizable button component with options to fit your design needs:
 
-- **Variants:** Choose from predefined styles like `primary` (dark background) and `secondary` (lighter background), with support for dark mode.  
-- **Sizes:** Select `small` or `medium` for different button heights and padding.  
-- **Gaps:** Control the spacing between content with the `gapSize` prop (either `small` or `medium`).  
-- **Custom Classes:** Apply additional styles using the `class` prop.  
+- **Variants:** Choose from predefined styles like `primary` (dark background) and `secondary` (lighter background), with support for dark mode.
+- **Sizes:** Select `small` or `medium` for different button heights and padding.
+- **Gaps:** Control the spacing between content with the `gapSize` prop (either `small` or `medium`).
+- **Custom Classes:** Apply additional styles using the `class` prop.
 - **Slots:** Include icons or extra content with optional `left-icon` and `right-icon` slots.  
-Example usage:
+  Example usage:
+
 ```astro
 <Button size="small" variant="primary">Primary small</Button>
 ```
 
--  Wrapper Component  
-A flexible layout component that helps with consistent spacing and alignment.  
+- Wrapper Component  
+  A flexible layout component that helps with consistent spacing and alignment.
 
-- **Variants:** The default `standard` variant includes responsive widths, centered content, and padding.  
-- **Custom Classes:** Add or change styles with the `class` prop.  
+- **Variants:** The default `standard` variant includes responsive widths, centered content, and padding.
+- **Custom Classes:** Add or change styles with the `class` prop.
 - **Content Slot:** Easily add any child components or content inside.
 
 ```astro
@@ -138,8 +165,11 @@ A flexible layout component that helps with consistent spacing and alignment.
 Your content goes here
 </Wrapper>
 ```
------
+
+---
 
 ### [Support](https://lexingtonthemes.com/legal/support/)
+
 ### [Documentation](https://lexingtonthemes.com/documentation/)
+
 ### [Get your bundle](https://lexingtonthemes.com)

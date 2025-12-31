@@ -2,7 +2,7 @@
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
-import Link from "@/components/fundations/elements/Link.astro";
+import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 ---
 
@@ -17,16 +17,16 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
         <Text
           tag="p"
           variant="display3XL"
-          class="font-serif font-light tracking-tight text-center text-black"
+          class="font-serif font-light tracking-tight text-center text-base-900"
           >404
         </Text>
         <div class="flex justify-center">
-          <Link
-            href="/podcast/home"
+          <Button
+            isLink
+            href="/"
             class="w-auto text-center"
             size="xs"
-            tag
-            variant="default">Go back home</Link
+            variant="default">Go back home</Button
           >
         </div>
       </div>

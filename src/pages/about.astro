@@ -14,14 +14,14 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard" class="py-12">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-2">
+    <Wrapper variant="standard" class="py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
         <div class="pr-10">
           <Text
             tag="h1"
             variant="textXS"
-            class="font-medium uppercase text-text-black"
-            >Welcome to <span class="text-black"
+            class="font-medium uppercase text-text-base-900"
+            >Welcome to <span class="text-base-900"
               >Innovative Design Conversations</span
             >, where creativity meets engineering. Join us for insightful
             interviews and podcasts that explore the minds of design engineers —</Text
@@ -63,31 +63,28 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
             src={Avatar1}
             width={1000}
             height={1000}
+            loading="lazy"
+            decoding="async"
             alt="#_"
-            class="object-cover object-center h-full grayscale"
+            class="object-cover object-center h-full grayscale aspect-4/3"
           />
           <Image
             src={Avatar2}
             width={1000}
             height={1000}
+            loading="lazy"
+            decoding="async"
             alt="#_"
-            class="object-cover object-center h-full grayscale"
+            class="object-cover object-center h-full grayscale aspect-4/3"
           />
           <Image
             src={Avatar3}
             width={1000}
             height={1000}
+            loading="lazy"
+            decoding="async"
             alt="#_"
-            class="object-cover object-center h-full grayscale col-span-full"
-          />
-        </div>
-        <div>
-          <Image
-            src={Avatar4}
-            width={1000}
-            height={1000}
-            alt="#_"
-            class="object-cover object-center h-full grayscale col-span-full"
+            class="object-cover object-center h-full grayscale col-span-full aspect-4/2"
           />
         </div>
       </div>

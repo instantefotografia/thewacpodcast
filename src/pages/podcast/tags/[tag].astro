@@ -6,7 +6,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 
 // Tags
-import PodcastEntry1 from "@/components/podcast/PodcastEntry1.astro";
+import PodcastCardSimple from "@/components/podcast/PodcastCardSimple.astro";
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const allPosts = await getCollection("podcast");
@@ -30,15 +30,21 @@ const { posts } = Astro.props;
 <BaseLayout pageTitle={tag}>
   <section>
     <Wrapper variant="standard" class="py-24">
-      <Text tag="h1" variant="textXS" class="font-medium text-black uppercase">
-        all our {tag}
-        articles
-      </Text>
+      <div class="max-w-xl">
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-serif font-light text-base-600"
+        >
+          All our episodes about
+          <span class="italic text-base-900">{tag}</span>
+        </Text>
+      </div>
 
       <div
-        class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 gap-y-"
+        class="items-start grid grid-cols-1mdm:grid-cols-2 gap-2 gap-y-12 mt-32 pt-2 border-t border-black"
       >
-        {posts.map((post) => <PodcastEntry1 post={post} />)}
+        {posts.map((post) => <PodcastCardSimple post={post} />)}
       </div>
     </Wrapper>
   </section>

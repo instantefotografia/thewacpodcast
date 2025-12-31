@@ -1,93 +1,17 @@
 ---
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Text from "@/components/fundations/elements/Text.astro";
-import Link from "@/components/fundations/elements/Link.astro";
-import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
 // Sections
-import BlogHero from "@/components/blog/BlogHero.astro";
-import Subscribe from "@/components/blog/Subscribe.astro";
-// Blog entry components
-import BlogEntry1 from "@/components/blog/BlogEntry1.astro";
-// Podcast entry components
-import PodcastEntry2 from "@/components/podcast/PodcastEntry2.astro";
-// Asro content collections
-import { getCollection } from "astro:content";
-// Get all podcasts
-const allPodcasts = await getCollection("podcast");
-allPodcasts.sort((a, b) => {
-  const dateA = new Date(a.data.pubDate).getTime(); // Convert to timestamp
-  const dateB = new Date(b.data.pubDate).getTime(); // Convert to timestamp
-  return dateB - dateA; // Compare timestamps
-});
-// Get all blog posts
-const allPosts = await getCollection("posts");
-allPosts.sort((a, b) => {
-  const dateA = new Date(a.data.pubDate).getTime(); // Convert to timestamp
-  const dateB = new Date(b.data.pubDate).getTime(); // Convert to timestamp
-  return dateB - dateA; // Compare timestamps
-});
+import Hero from "@/components/landing/Hero.astro";
+import BlogPreview from "@/components/landing/BlogPreview.astro";
+import PodcastPreview from "@/components/landing/PodcastPreview.astro";
+import Subscribe from "@/components/ctas/Subscribe.astro";
+
 ---
-
 <BaseLayout>
-  <BlogHero />
-
-  
-  <section>
-    <Wrapper variant="standard" class="pt-32 pb-12">
-      <div class="flex flex-wrap items-center justify-between w-full gap-4">
-        <Text tag="p" variant="textSM" class="font-medium uppercase">
-          Our most popular posts post
-        </Text>
-        <Link
-          size="xs"
-          variant="default"
-          href="/blog/"
-          class="w-auto text-center"
-          aria-label="Read all blog posts"
-          title="Read all blog posts"
-        >
-          Read them all
-        </Link>
-      </div>
-      <div
-        class="items-start pt-4 mt-4 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
-      >
-        {
-          allPosts
-            .filter((post) => post.data.isPopular)
-            .map((post) => <BlogEntry1 key={post.id} post={post} />)
-        }
-      </div>
-    </Wrapper>
-  </section>
-  <section>
-    <Wrapper variant="standard" class="pt-32 pb-12">
-      <div class="flex flex-wrap items-center justify-between w-full gap-4">
-        <Text tag="p" variant="textSM" class="font-medium uppercase">
-          Recent podcast interviews
-        </Text>
-        <Link
-          size="xs"
-          variant="default"
-          class="w-auto text-center"
-          href="/podcast/"
-          aria-label="Listen to all podcast episodes"
-          title="Listen to all podcast episodes"
-        >
-          Listen to them all
-        </Link>
-      </div>
-      <div
-        class="flex flex-col items-start pt-4 mt-4 border-t border-black divide-y"
-      >
-        {
-          allPodcasts
-            .filter((post) => post.data.isPopular)
-            .map((post) => <PodcastEntry2 post={post} />)
-        }
-      </div>
-    </Wrapper>
-  </section>
+  <Hero />
+  <BlogPreview />
+  <PodcastPreview />
   <Subscribe />
 </BaseLayout>

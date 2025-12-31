@@ -33,6 +33,11 @@ const next = sorted[index + 1] || null;
 const { Content } = await currentPost.render();
 ---
 
-<PodcastLayout frontmatter={currentPost.data} previous={previous} next={next}>
+<PodcastLayout
+  frontmatter={currentPost.data}
+  slug={currentPost.slug}
+  previous={previous}
+  next={next}
+>
   <Content />
 </PodcastLayout>

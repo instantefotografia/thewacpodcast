@@ -19,8 +19,8 @@ const pageSections = [
       {
         category: "Forms",
         links: [
-          { text: "Login", href: "/forms/login" },
-          { text: "Sign up", href: "/forms/signup" },
+          { text: "Login", href: "/login" },
+          { text: "Sign up", href: "/signup" },
           { text: "Contact", href: "/contact" },
         ],
       },
@@ -56,39 +56,35 @@ const pageSections = [
         category: "Blog ",
         links: [
           { text: "Home", href: "/" },
-          { text: "Home pagination", href: "/blog/" },
-          { text: "Blog Post open", href: "/blog/posts/2" },
-          { text: "Blog Post paywall", href: "/blog/posts/1" },
+          { text: "Details open", href: "/blog/posts/2" },
+          { text: "Details paywall", href: "/blog/posts/1" },
           { text: "Tag Index", href: "/blog/tags" },
-          { text: "Tag Category", href: "/blog/tags/balance" },
+          { text: "Tag Category", href: "/blog/tags/patterns" },
           { text: "RSS", href: "/rss.xml" },
         ],
       },
       {
         category: "Podcast Pages",
         links: [
-          { text: "Podcast home", href: "/podcast/home" },
+          { text: "Podcast home", href: "/podcast" },
           { text: "Interview episode open", href: "/podcast/interviews/2" },
           { text: "Interview episode paywall", href: "/podcast/interviews/1" },
           { text: "Tag Index", href: "/podcast/tags" },
-          { text: "Tag Category", href: "/blog/podcast/balance" },
-        ],
-      },
-      {
-        category: "Utility Pages",
-        links: [
-          { text: "DPA", href: "/infopages/privacy" },
-          { text: "Cookies", href: "/infopages/cookies" },
-          { text: "Terms Of Use", href: "/infopages/terms" },
-          { text: "Privacy Policy", href: "/infopages/privacy" },
-          { text: "Ethics-statement", href: "/infopages/ethics-statement" },
+          { text: "Tag Category", href: "/podcast/tags/ux" },
         ],
       },
       {
         category: "Authors",
         links: [
-          { text: "Authors", href: "/authors/home" },
-          { text: "Author details", href: "/authors/jordan-wells" },
+          { text: "Authors", href: "/authors" },
+          { text: "Details", href: "/authors/jordan-wells" },
+        ],
+      },
+      {
+        category: "Legal",
+        links: [
+          { text: "Details", href: "/legal/privacy" },
+         
         ],
       },
     ],
@@ -98,24 +94,32 @@ const pageSections = [
 
 <BaseLayout>
   <section>
-    <Wrapper variant="standard" class="pb-24">
-      <Text tag="h1" variant="textXS" class="font-medium text-black uppercase">
+    <Wrapper variant="standard" class="py-24">
+      <Text
+        tag="h1"
+        variant="displaySM"
+        class="font-medium text-base-900 uppercase"
+      >
         Overview
       </Text>
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="mt-12 flex flex-col gap-12 gap-4">
         {
           pageSections.map((section) => (
             <div>
-              <Text tag="h3" variant="textBase" class="font-serif text-black ">
+              <Text
+                tag="h3"
+                variant="textBase"
+                class="font-serif text-base-900 "
+              >
                 {section.title}
               </Text>
-              <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mt-4  gap-8 lg:col-span-3">
+              <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 mt-4  gap-8 lg:col-span-3">
                 {section.columns.map((column) => (
                   <div class="flex flex-col gap-">
                     <Text
                       tag="p"
                       variant="textXS"
-                      class="font-medium text-black uppercase"
+                      class="font-medium text-base-900 uppercase"
                     >
                       {column.category}
                     </Text>
@@ -125,7 +129,7 @@ const pageSections = [
                           <Text
                             tag="a"
                             variant="textXS"
-                            class="font-medium text-base-600 hover:text-black hover:underline "
+                            class="font-medium text-base-600 hover:text-base-900 hover:underline "
                             href={link.href}
                           >
                             {link.text}

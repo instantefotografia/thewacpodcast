@@ -5,24 +5,33 @@ import ShareButtons from "@/components/fundations/elements/ShareButtons.astro";
 // Fundations
 import BaseLayout from "./BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
-import Link from "@/components/fundations/elements/Link.astro";
+import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Sections
-import Subscribe from "@/components/blog/Subscribe.astro";
-import BlogEntry1 from "@/components/blog/BlogEntry1.astro";
+import Subscribe from "@/components/ctas/Subscribe.astro";
+import BlogCardSimple from "@/components/blog/BlogCardSimple.astro";
 // Props
-const { frontmatter, previous, next } = Astro.props;
+const { frontmatter, previous, next, slug } = Astro.props;
 import { getEntry } from "astro:content";
 const author = await getEntry("authors", frontmatter.author);
 // Get all posts and filter by tag
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
+const currentSlug =
+  slug ||
+  frontmatter.slug ||
+  (Astro.url?.pathname
+    ? Astro.url.pathname.split("/").filter(Boolean).pop()
+    : "");
 const relatedPosts = allPosts.filter(
   (post) =>
-    post.slug !== frontmatter.slug && 
+    post.slug !== currentSlug &&
+    Array.isArray(post.data.tags) &&
+    Array.isArray(frontmatter.tags) &&
     post.data.tags.some((tag) => frontmatter.tags.includes(tag))
 );
 ---
+
 <BaseLayout>
   <section>
     <Wrapper variant="standard">
@@ -32,7 +41,7 @@ const relatedPosts = allPosts.filter(
           <Text
             tag="h1"
             variant="display3XL"
-            class="max-w-4xl mx-auto font-serif font-light tracking-tight text-center text-black mix-blend-difference text-balance"
+            class="max-w-4xl mx-auto font-serif font-light tracking-tight text-center text-base-900 mix-blend-difference text-balance"
           >
             {frontmatter.title}
           </Text>
@@ -103,8 +112,8 @@ const relatedPosts = allPosts.filter(
             variant="displayMD"
             class="mt-8 font-serif font-light text-center leading-6 md:leading-8 text-base-600 text-balance"
           >
-            {frontmatter.description}</Text
-          >
+            {frontmatter.description}
+          </Text>
           <div class="flex justify-center mt-4 gap-2">
             {
               frontmatter.tags.map((tag) => (
@@ -122,77 +131,84 @@ const relatedPosts = allPosts.filter(
         </div>
         {
           frontmatter.isLocked ? (
-              <div class="py-20 text-center">
-                <Text
-                  tag="h4"
-                  variant="displaySM"
-                  class="max-w-4xl mx-auto font-serif font-light tracking-tight text-center text-black  text-balance"
-                >
-                  This post is for subscribers only. Unlock premium insights by
-                  becoming a member.
-                </Text>
-                <div class="flex flex-wrap justify-center mt-8 gap-2">
-                  <Link size="sm" variant="muted" href="/forms/login">
-                    Log in
-                  </Link>
-                  <Link size="sm" variant="default" href="/pricing">
-                    Subscribe Now
-                  </Link>
-                </div>
+            <div class="py-20 text-center">
+              <Text
+                tag="h4"
+                variant="displaySM"
+                class="max-w-4xl mx-auto font-serif font-light tracking-tight text-center text-base-900  text-balance"
+              >
+                This post is for subscribers only. Unlock premium insights by
+                becoming a member.
+              </Text>
+              <div class="flex flex-wrap justify-center mt-8 gap-2">
+                <Button isLink size="sm" variant="muted" href="/login">
+                  Log in
+                </Button>
+                <Button isLink size="sm" variant="default" href="/pricing">
+                  Subscribe Now
+                </Button>
               </div>
-          ) : (
-            <Wrapper variant="prose" class="max-w-xl mx-auto mt-24">
-              <slot />
-            </Wrapper>
-               <div class="pt-6 mt-6 border-t border-black">
-              <ShareButtons
-                      contentType="blog"
-                      description={frontmatter.description}
-                    />
             </div>
+          ) : (
+            <>
+              <Wrapper variant="prose" class="max-w-xl mx-auto mt-24">
+                <slot />
+              </Wrapper>
+              <div class="pt-6 mt-6 border-t border-black">
+                <ShareButtons
+                  contentType="blog"
+                  description={frontmatter.description}
+                />
+              </div>
+            </>
           )
         }
       </div>
     </Wrapper>
     <Wrapper variant="standard" class="pb-24 pt-8">
       <nav
-       class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs"
-     >
-       {
-         previous && (
-           <a
-             href={`/blog/posts/${previous.slug}`}
-             class="hover:opacity-80 "
-           >
-             <span class="block  text-black font-medium uppercase">Previous:</span>
-            <span class="block  text-base-600"> {previous.data.title}</span>
-           </a>
-         )
-       }
-       {
-         next && (
-           <a
-             href={`/blog/posts/${next.slug}`}
-             class=" hover:opacity-80 text-right"
-           >
-            <span class="block  text-black font-medium uppercase ">Next:</span>
-            <span class="block  text-base-600"> {next.data.title}</span>
-           </a>
-         )
-       }
-     </nav>
+        class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs"
+      >
+        {
+          previous && (
+            <a href={`/blog/posts/${previous.slug}`} class="hover:opacity-80 ">
+              <span class="block  text-base-900 font-medium uppercase">
+                Previous:
+              </span>
+              <span class="block  text-base-600"> {previous.data.title}</span>
+            </a>
+          )
+        }
+        {
+          next && (
+            <a
+              href={`/blog/posts/${next.slug}`}
+              class=" hover:opacity-80 text-right"
+            >
+              <span class="block  text-base-900 font-medium uppercase ">
+                Next:
+              </span>
+              <span class="block  text-base-600"> {next.data.title}</span>
+            </a>
+          )
+        }
+      </nav>
     </Wrapper>
   </section>
   {
     relatedPosts.length > 0 && (
       <section>
         <Wrapper variant="standard" class="py-8">
-          <Text tag="p" variant="textSM" class="font-medium uppercase">
+          <Text
+            tag="h2"
+            variant="displayMD"
+            class="font-serif font-light text-base-600"
+          >
             Related posts
           </Text>
-          <div class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2">
+          <div class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-2">
             {relatedPosts.slice(0, 3).map((post) => (
-              <BlogEntry1 post={post} />
+              <BlogCardSimple post={post} />
             ))}
           </div>
         </Wrapper>

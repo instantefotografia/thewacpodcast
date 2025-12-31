@@ -20,7 +20,7 @@ const authors = defineCollection({
     }),
 });
 
-const infopages = defineCollection({
+const legal = defineCollection({
   schema: z.object({
     page: z.string(),
     pubDate: z.date(),
@@ -60,7 +60,7 @@ const posts = defineCollection({
       description: z.string(),
       author: z.string(),
       image: z.object({
-        url: image(), 
+        url: image(),
         alt: z.string(),
       }),
       tags: z.array(z.string()),
@@ -71,8 +71,8 @@ const posts = defineCollection({
 });
 
 export const collections = {
-  posts: posts,
-  authors: authors,
-  podcast: podcast,
-  infopages: infopages,
+  posts,
+  authors,
+  podcast,
+  legal,
 };

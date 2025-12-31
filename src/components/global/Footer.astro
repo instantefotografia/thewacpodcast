@@ -1,7 +1,7 @@
 ---
 // Assets
 import Logo from "@/components/assets/Logo.astro";
-import BigLogo from "@/components/assets/BigLogo.astro";
+
 import Signature from "@/components/global/Signature.astro";
 // Fundations
 import Text from "../fundations/elements/Text.astro";
@@ -23,13 +23,12 @@ const footerLinks = [
       { name: "Amazon Music", link: "#_" },
     ],
   },
-  // Add more sections as needed
 ];
 ---
 
 <footer class="z-0 w-full pb-2 bg-black">
   <Wrapper variant="standard" class="pt-12 lg:pt-12">
-    <BigLogo class="max-w-4xl text-white" />
+    <Logo class="max-w-4xl text-white" />
 
     <div
       class="items-start mt-12 grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-12"
@@ -94,12 +93,8 @@ const footerLinks = [
         <a href="/" class="mt-auto">
           <Logo class="h-4 text-white" />
         </a>
-        <Text
-          tag="span"
-          class="text-xs font-semibold text-base-600"
-          x-data="{ year: new Date().getFullYear() }"
-        >
-          © <span x-text="year"></span> Lexington Themes.
+        <Text tag="span" class="text-xs font-semibold text-base-600">
+          © {new Date().getFullYear()} Lexington Themes.
         </Text>
       </div>
     </div>

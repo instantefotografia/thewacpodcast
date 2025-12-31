@@ -68,10 +68,10 @@
 @theme {
   /* Typography*/
   --font-sans: "Inter", sans-serif;
-  --font-serif: "Newsreader", serif;
+  --font-serif: "STIX Two Text", serif;
   /* Colors */
-  --color-black: #121212;
-  --color-white: #f6f5f3;
+
+
   --color-accent-50: oklch(98.17% 0.018 92.68);
   --color-accent-100: oklch(96.39% 0.034 92.27);
   --color-accent-200: oklch(92.87% 0.067 92.43);

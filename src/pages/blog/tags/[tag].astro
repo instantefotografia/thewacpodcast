@@ -6,7 +6,7 @@ import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
 
 // Tags
-import BlogCardSimple from "@/components/blog/BlogCardSimple.astro";
+import BlogCard2 from "@/components/blog/BlogCard2.astro";
 import { getCollection } from "astro:content";
 export async function getStaticPaths() {
   const allPosts = await getCollection("posts");
@@ -44,7 +44,7 @@ const { posts } = Astro.props;
       <div
         class="items-start grid grid-cols-1 md:grid-cols-2 gap-2 gap-y-12 mt-32 pt-2 border-t border-black"
       >
-        {posts.map((post) => <BlogCardSimple post={post} />)}
+        {posts.map((post) => <BlogCard2 post={post} />)}
       </div>
     </Wrapper>
   </section>

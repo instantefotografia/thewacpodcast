@@ -4,7 +4,7 @@ import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Components
-import BlogCardSimple from "@/components/blog/BlogCardSimple.astro";
+import BlogCard2 from "@/components/blog/BlogCard2.astro";
 // Content
 import { getCollection } from "astro:content";
 // Get all blog posts
@@ -40,7 +40,7 @@ allPosts.sort((a, b) => {
       {
         allPosts
           .filter((post) => post.data.isPopular)
-          .map((post) => <BlogCardSimple key={post.id} post={post} />)
+          .map((post) => <BlogCard2 key={post.id} post={post} />)
       }
     </div>
   </Wrapper>

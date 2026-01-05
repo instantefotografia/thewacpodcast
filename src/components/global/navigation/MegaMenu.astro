@@ -2,7 +2,7 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 // Components
-import BlogCardOverlayed from "@/components/blog/BlogCardOverlayed.astro";
+import BlogCard1 from "@/components/blog/BlogCard1.astro";
 import PodcastCardText from "@/components/podcast/PodcastCardText.astro";
 // Content
 import { getCollection } from "astro:content";
@@ -40,11 +40,16 @@ const podcastPlatforms = [
 >
   <div class="pb-8 grid grid-cols-1 md:grid-cols-5 gap-8 border-b">
     <div class="lg:col-span-3">
-      <Text tag="a" href="/blog/" variant="textXL" class="font-serif font-light">
+      <Text
+        tag="a"
+        href="/blog/"
+        variant="textXL"
+        class="font-serif font-light"
+      >
         From the blog
       </Text>
       <div class="mt-1 md:grid grid-cols-1 gap-2 lg:grid-cols-2">
-        {allPosts.slice(0, 2).map((post) => <BlogCardOverlayed post={post} />)}
+        {allPosts.slice(0, 2).map((post) => <BlogCard1 post={post} />)}
       </div>
     </div>
     <div>
@@ -61,7 +66,12 @@ const podcastPlatforms = [
       </div>
     </div>
     <div>
-      <Text tag="p" href="/blog/" variant="textXL" class="font-serif font-light">
+      <Text
+        tag="p"
+        href="/blog/"
+        variant="textXL"
+        class="font-serif font-light"
+      >
         Listen on
       </Text>
       <nav class="flex flex-col mt-1 gap-1">

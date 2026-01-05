@@ -9,7 +9,7 @@ import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
 // Sections
 import Subscribe from "@/components/ctas/Subscribe.astro";
-import BlogCardSimple from "@/components/blog/BlogCardSimple.astro";
+import BlogCard2 from "@/components/blog/BlogCard2.astro";
 // Props
 const { frontmatter, previous, next, slug } = Astro.props;
 import { getEntry } from "astro:content";
@@ -208,7 +208,7 @@ const relatedPosts = allPosts.filter(
           </Text>
           <div class="items-start pt-2 mt-2 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-2">
             {relatedPosts.slice(0, 3).map((post) => (
-              <BlogCardSimple post={post} />
+              <BlogCard2 post={post} />
             ))}
           </div>
         </Wrapper>

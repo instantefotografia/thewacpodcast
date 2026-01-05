@@ -17,10 +17,14 @@ const sorted = allPosts
 const index = sorted.findIndex((post) => post.slug === entry.slug);
 const previous = sorted[index - 1] || null;
 const next = sorted[index + 1] || null;
+// Calculate reading time from the raw markdown body
+import readingTime from "reading-time";
+const stats = readingTime(entry.body);
 ---
 
 <BlogLayout
   frontmatter={entry.data}
+  readingTime={stats.text}
   slug={entry.slug}
   previous={previous}
   next={next}

@@ -1,6 +1,6 @@
 # Hemingway
 
-![Theme preview](https://lexingtonthemes.com/OpenGraph/alfred/twitter.png)
+![Theme preview](https://lexingtonthemes.com/OpenGraph/hemingway/twitter.png)
 
 
 ## Links

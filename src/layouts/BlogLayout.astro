@@ -25,7 +25,7 @@ const currentSlug =
     : "");
 const relatedPosts = allPosts.filter(
   (post) =>
-    post.slug !== currentSlug &&
+    post.id !== currentSlug &&
     Array.isArray(post.data.tags) &&
     Array.isArray(frontmatter.tags) &&
     post.data.tags.some((tag) => frontmatter.tags.includes(tag))
@@ -66,7 +66,7 @@ const relatedPosts = allPosts.filter(
           {
             author && (
               <a
-                href={`/authors/${author.slug}`}
+                href={`/authors/${author.id}`}
                 class="flex items-center justify-center gap-3 hover:opacity-80 transition"
               >
                 {author?.data?.image?.url && (
@@ -171,7 +171,7 @@ const relatedPosts = allPosts.filter(
       >
         {
           previous && (
-            <a href={`/blog/posts/${previous.slug}`} class="hover:opacity-80 ">
+            <a href={`/blog/posts/${previous.id}`} class="hover:opacity-80 ">
               <span class="block  text-base-900 font-medium uppercase">
                 Previous:
               </span>
@@ -182,7 +182,7 @@ const relatedPosts = allPosts.filter(
         {
           next && (
             <a
-              href={`/blog/posts/${next.slug}`}
+              href={`/blog/posts/${next.id}`}
               class=" hover:opacity-80 text-right"
             >
               <span class="block  text-base-900 font-medium uppercase ">

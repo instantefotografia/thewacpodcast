@@ -5,10 +5,10 @@ const posts = await Promise.all(
     title: post.data.title,
     pubDate: post.data.pubDate,
     description: post.data.description,
-    slug: post.slug,
+    slug: post.id,
     type: "blog",
     typeLabel: "Blog",
-    href: `/blog/posts/${post.slug}`,
+    href: `/blog/posts/${post.id}`,
   }))
 );
 const podcasts = await Promise.all(
@@ -16,10 +16,10 @@ const podcasts = await Promise.all(
     title: podcast.data.title,
     pubDate: podcast.data.pubDate,
     description: podcast.data.description,
-    slug: podcast.slug,
+    slug: podcast.id,
     type: "podcast",
     typeLabel: "Podcast",
-    href: `/podcast/interviews/${podcast.slug}`,
+    href: `/podcast/interviews/${podcast.id}`,
   }))
 );
 const items = [...posts, ...podcasts];

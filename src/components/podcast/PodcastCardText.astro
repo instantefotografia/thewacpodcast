@@ -2,7 +2,7 @@
 // Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 const { url, title, pubDate } = {
-  url: "/podcast/interviews/" + Astro.props.post.slug,
+  url: "/podcast/interviews/" + Astro.props.post.id,
   title: Astro.props.post.data.title,
   pubDate: new Date(Astro.props.post.data.pubDate).toLocaleDateString("en-US", {
     year: "numeric",

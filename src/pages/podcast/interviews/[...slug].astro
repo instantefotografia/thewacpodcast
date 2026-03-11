@@ -1,13 +1,13 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import PodcastLayout from "@/layouts/PodcastLayout.astro";
 
 // Generate static paths for all podcast slugs
 export async function getStaticPaths() {
   const podcast = await getCollection("podcast");
   return podcast.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { slug: entry.slug },
+    params: { slug: entry.id },
+    props: { slug: entry.id },
   }));
 }
 
@@ -25,17 +25,17 @@ const sorted = validPosts.sort(
     new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
 
-const index = sorted.findIndex((item) => item.slug === slug);
+const index = sorted.findIndex((item) => item.id === slug);
 const currentPost = sorted[index];
 const previous = sorted[index - 1] || null;
 const next = sorted[index + 1] || null;
 
-const { Content } = await currentPost.render();
+const { Content } = await render(currentPost);
 ---
 
 <PodcastLayout
   frontmatter={currentPost.data}
-  slug={currentPost.slug}
+  slug={currentPost.id}
   previous={previous}
   next={next}
 >

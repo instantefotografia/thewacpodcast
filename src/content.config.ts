@@ -1,12 +1,16 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
+
 const authors = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/authors" }),
   schema: ({ image }) =>
     z.object({
       name: z.string(),
       role: z.string().optional(),
       bio: z.string().optional(),
       image: z.object({
-        url: image(), // use Astro image helper
+        url: image(),
         alt: z.string(),
       }),
       socials: z
@@ -21,25 +25,27 @@ const authors = defineCollection({
 });
 
 const legal = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/legal" }),
   schema: z.object({
     page: z.string(),
-    pubDate: z.date(),
+    pubDate: z.coerce.date(),
   }),
 });
 
 const podcast = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/podcast" }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      pubDate: z.date(),
+      pubDate: z.coerce.date(),
       description: z.string(),
       author: z.string(),
       image: z.object({
-        url: image(), // Astro image helper
+        url: image(),
         alt: z.string(),
       }),
       guestAvatar: z.object({
-        url: image(), // Astro image helper
+        url: image(),
         alt: z.string(),
       }),
       episodeNumber: z.number().optional(),
@@ -53,10 +59,15 @@ const podcast = defineCollection({
 });
 
 const posts = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/posts",
+    retainBody: true,
+  }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      pubDate: z.date(),
+      pubDate: z.coerce.date(),
       description: z.string(),
       author: z.string(),
       image: z.object({

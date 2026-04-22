@@ -1,102 +1,111 @@
 ---
 // Assets
-import Logo from "@/components/assets/Logo.astro";
-
-import Signature from "@/components/global/Signature.astro";
+import LogoIcon from "@/components/assets/LogoIcon.astro";
 // Fundations
 import Text from "../fundations/elements/Text.astro";
 import Wrapper from "../fundations/containers/Wrapper.astro";
-const footerLinks = [
-  {
-    id: "listen-on",
-    title: "Listen on",
-    platforms: [
-      { name: "Spotify", link: "#_" },
-      { name: "Apple Podcasts", link: "#_" },
-      { name: "YouTube", link: "#_" },
-      { name: "Overcast", link: "#_" },
-      { name: "Pocket Casts", link: "#_" },
-      { name: "Castbox", link: "#_" },
-      { name: "Stitcher", link: "#_" },
-      { name: "iHeartRadio", link: "#_" },
-      { name: "Google Podcasts", link: "#_" },
-      { name: "Amazon Music", link: "#_" },
-    ],
-  },
+
+const podcastPlatforms = [
+  { name: "Spotify", link: "https://open.spotify.com/show/6CBDI1nNRGpOqMFsdvJbzO?si=d4a41214c2d8412a" },
+  { name: "Apple Podcasts", link: "https://podcasts.apple.com/pt/podcast/the-wac-podcast/id1739397751" },
+  { name: "YouTube", link: "https://www.youtube.com/@thewacpodcast" },
+];
+
+const siteLinks = [
+  { name: "Podcast", link: "/podcast" },
+  { name: "Blog", link: "/blog" },
+  { name: "About", link: "/about" },
+  { name: "Community", link: "/community" },
+];
+
+const socialLinks = [
+  { name: "Instagram", link: "https://instagram.com/thewacpodcast" },
 ];
 ---
 
-<footer class="z-0 w-full pb-2 bg-black">
+<footer class="z-0 w-full pb-2 bg-base-900">
   <Wrapper variant="standard" class="pt-12 lg:pt-12">
-    <Logo class="max-w-4xl text-white" />
+    <LogoIcon class="h-16 w-auto" variant="white" />
 
-    <div
-      class="items-start mt-12 grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-12"
-    >
-      <div>
-        <Text
-          tag="p"
-          variant="textSM"
-          class="max-w-xs mt-2 font-serif text-base-400"
-        >
-          Hemingway conducts in-depth interviews with some of the top design
-          engineers in the industry, giving you the option to either read the
-          full transcripts or listen to the conversations on a variety of
-          platforms, ensuring accessibility and convenience for all audiences.
+    <!-- Description left · nav columns right -->
+    <div class="mt-12 flex flex-col md:flex-row md:justify-between gap-12">
 
-          <br />
-          <br />
-          These interviews delve into the creative processes, innovative solutions,
-          and real-world challenges faced by design engineers, offering valuable
-          insights and inspiration for professionals and enthusiasts alike. Whether
-          you prefer to engage with the content on your morning commute or during
-          a quiet moment at home, Hemingway makes it easy to stay connected to cutting-edge
-          ideas in design engineering.
+      <!-- Description -->
+      <div class="max-w-xs">
+        <Text tag="p" variant="textSM" class="mt-2 text-base-400">
+          The Wedding Artists Community is where photographers, planners, and
+          creatives come to share honestly, build better, and connect with
+          peers across the world.
         </Text>
-        <Signature class="h-10 mt-12 text-base-400" />
       </div>
-      <div class="lg:ml-auto">
-        {
-          footerLinks.map((section) => (
-            <div class="flex flex-col ">
+
+      <!-- Nav columns: Social · Listen On · Navigate -->
+      <div class="flex flex-row gap-12 lg:gap-16">
+
+        <div>
+          <Text tag="h3" variant="textXS" class="font-medium text-white uppercase tracking-wide">
+            Social
+          </Text>
+          <nav class="flex flex-col mt-4 gap-2">
+            {socialLinks.map((link) => (
               <Text
-                tag="h3"
+                tag="a"
                 variant="textXS"
-                id={section.id}
-                class="font-medium text-white uppercase"
+                href={link.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-medium uppercase text-base-300 hover:underline tracking-wide"
               >
-                {section.title}
+                {link.name}
               </Text>
-              <nav
-                role="navigation"
-                class="flex flex-col mt-8 gap-2"
-                aria-labelledby={section.id}
+            ))}
+          </nav>
+        </div>
+
+        <div>
+          <Text tag="h3" variant="textXS" class="font-medium text-white uppercase tracking-wide">
+            Listen on
+          </Text>
+          <nav class="flex flex-col mt-4 gap-2">
+            {podcastPlatforms.map((platform) => (
+              <Text
+                tag="a"
+                variant="textXS"
+                href={platform.link}
+                aria-label={`Listen on ${platform.name}`}
+                class="font-medium uppercase text-base-300 hover:underline tracking-wide"
               >
-                {section.platforms.map((platform, index) => (
-                  <Text
-                    tag="a"
-                    variant="textXS"
-                    href={platform.link}
-                    aria-label={`Go to ${platform.name}`}
-                    class="font-medium uppercase text-base-300 hover:underline"
-                  >
-                    {platform.name}
-                  </Text>
-                ))}
-              </nav>
-            </div>
-          ))
-        }
+                {platform.name}
+              </Text>
+            ))}
+          </nav>
+        </div>
+
+        <div>
+          <Text tag="h3" variant="textXS" class="font-medium text-white uppercase tracking-wide">
+            Navigate
+          </Text>
+          <nav class="flex flex-col mt-4 gap-2">
+            {siteLinks.map((link) => (
+              <Text
+                tag="a"
+                variant="textXS"
+                href={link.link}
+                class="font-medium uppercase text-base-300 hover:underline tracking-wide"
+              >
+                {link.name}
+              </Text>
+            ))}
+          </nav>
+        </div>
+
       </div>
-      <div class="flex items-center h-full gap-2 lg:pt-12">
-        <!-- This link will stick to the bottom -->
-        <a href="/" class="mt-auto">
-          <Logo class="h-4 text-white" />
-        </a>
-        <Text tag="span" class="text-xs font-semibold text-base-600">
-          © {new Date().getFullYear()} Lexington Themes.
-        </Text>
-      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-base-800 text-center">
+      <Text tag="span" class="text-xs font-medium text-white">
+        © {new Date().getFullYear()} Wedding Artists Community. All rights reserved.
+      </Text>
     </div>
   </Wrapper>
 </footer>

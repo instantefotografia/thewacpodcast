@@ -1,0 +1,11 @@
+---
+const { class: className = "", variant = "chocolate", ...rest } = Astro.props;
+const src = variant === "white" ? "/WAC-icon-branco.png" : "/WAC-icon-chocolate.png";
+---
+
+<img
+  src={src}
+  alt="WAC"
+  class={className}
+  {...rest}
+/>

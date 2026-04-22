@@ -3,63 +3,38 @@
 import Logo from "@/components/assets/Logo.astro";
 // Fundations
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Icons
-import Burger from "@/components/fundations/icons/Burger.astro";
-import Search from "@/components/global/Search.astro";
-import MegaMenu from "./MegaMenu.astro";
+
 const primaryNavLinks = [
-  { href: "/system/overview", link: "Overview" },
-  { href: "/blog", link: "Magazine" },
+  { href: "/", link: "Home" },
   { href: "/podcast", link: "Podcast" },
+  { href: "/blog", link: "Blog" },
   { href: "/about", link: "About" },
-  { href: "/pricing", link: "Membership" },
+  { href: "/community", link: "Community" },
 ];
 ---
 
-<section id="navigation" class="z-10">
-  <Wrapper variant="standard">
-    <div class="pt-2">
-      <div class="w-full grid grid-cols-3 gap-4 lg:gap-12 lg:h-5 items-center">
-        <a href="/">
-          <span class="sr-only">link to home</span>
-          <Logo class="h-6" />
-        </a>
+<!-- Logo: pequeno em mobile, grande em desktop -->
+<div class="fixed top-[6px] left-[8px] z-50 mix-blend-difference pointer-events-none">
+  <a href="/" class="pointer-events-auto">
+    <span class="sr-only">Wedding Artists Community</span>
+    <Logo class="h-16 lg:h-36 w-auto" variant="white" />
+  </a>
+</div>
 
-        <div
-          class="flex items-center w-full col-span-2 gap-2 lg:col-span-auto lg:col-start-3"
-        >
-          <Search />
-          <nav class="hidden lg:flex items-center gap-2">
-            {
-              primaryNavLinks.map((link) => (
-                <a
-                  href={link.href}
-                  class="uppercase text-base-900 hover:text-base-500 font-medium text-xs"
-                >
-                  {link.link}
-                </a>
-              ))
-            }
-          </nav>
+<!-- Nav: esconde Home em mobile para não colidir com o logo -->
+<div class="fixed top-4 right-0 z-50 mix-blend-difference pointer-events-none">
+  <Wrapper variant="standard">
+    <nav class="flex items-center justify-end gap-4 lg:gap-6 pointer-events-auto">
+      {
+        primaryNavLinks.map((link) => (
           <a
-            href="https://buy.polar.sh/polar_cl_U8Mtq7VFohIH4lm7cuCgtyfuB5I0aIhkb6WP0SZGSCA"
-            class="uppercase text-base-900 hover:text-base-500 font-medium text-xs"
+            href={link.href}
+            class="uppercase text-white hover:opacity-60 font-medium text-[10px] lg:text-xs tracking-wide transition-opacity"
           >
-            Buy
+            {link.link}
           </a>
-          <button
-            id="menubutton"
-            type="button"
-            aria-controls="menu"
-            aria-expanded="false"
-            aria-link="Toggle menu"
-            class="text-base-900"
-          >
-            <Burger slot="icon" size="base" />
-          </button>
-        </div>
-      </div>
-      <MegaMenu />
-    </div>
+        ))
+      }
+    </nav>
   </Wrapper>
-</section>
+</div>

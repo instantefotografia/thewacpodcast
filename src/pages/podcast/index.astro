@@ -2,44 +2,49 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Podcast entry components
-import PodcastCardWide from "@/components/podcast/PodcastCardWide.astro";
-import PodcastCardSimple from "@/components/podcast/PodcastCardSimple.astro";
-// Sections
 import Hero from "@/components/podcast/Hero.astro";
 import Subscribe from "@/components/ctas/Subscribe.astro";
-// Astro content
-import { getCollection } from "astro:content";
-const allPodcasts = await getCollection("podcast");
-const sorted = allPodcasts
-  .filter((item) => item.data?.pubDate)
-  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+import { getEpisodes, resolveEpisodeGuests } from "@/lib/notion";
+
+const episodes = await resolveEpisodeGuests(await getEpisodes());
 ---
 
 <BaseLayout>
   <Hero />
   <section>
     <Wrapper variant="standard" class="pt-32 pb-12">
-      <div
-        class="flex flex-col items-start pt-4 border-t border-black divide-y"
-      >
-        {sorted.map((post) => <PodcastCardWide post={post} />)}
-      </div>
-    </Wrapper>
-  </section>
-  <section>
-    <Wrapper variant="standard" class="pt-32 pb-12">
-      <Text tag="p" variant="textSM" class="font-medium uppercase">
-        Subscribers only
-      </Text>
-      <div
-        class="items-start pt-4 mt-4 border-t border-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4"
-      >
-        {
-          allPodcasts
-            .filter((post) => post.data.isLocked)
-            .map((post) => <PodcastCardSimple post={post} />)
-        }
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 mt-4 border-t border-black">
+        {episodes.map((episode) => {
+          const url = `/podcast/interviews/${episode.slug}`;
+          const guestName = episode.guests?.[0]?.name ?? null;
+          return (
+            <article class="group">
+              <a href={url} title={episode.title} aria-label={`Listen to ${episode.title}`} class="block aspect-square overflow-hidden">
+                {episode.coverArt
+                  ? <img src={episode.coverArt} alt={guestName ?? episode.title} width="800" height="800" class="object-cover w-full h-full group-hover:scale-105" loading="lazy" />
+                  : <div class="w-full h-full bg-stone-100 group-hover:scale-105"></div>
+                }
+              </a>
+              <div class="mt-3">
+                {episode.episodeNumber && (
+                  <Text tag="p" variant="textXS" class="uppercase text-base-400">
+                    Ep. {episode.episodeNumber}
+                  </Text>
+                )}
+                <a href={url} class="group-hover:underline">
+                  <Text tag="h2" variant="textSM" class="mt-0.5 font-medium leading-snug">
+                    {episode.title}
+                  </Text>
+                </a>
+                {guestName && (
+                  <Text tag="p" variant="textXS" class="mt-1 text-base-500">
+                    {guestName}
+                  </Text>
+                )}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </Wrapper>
   </section>

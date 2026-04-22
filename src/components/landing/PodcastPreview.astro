@@ -1,26 +1,17 @@
 ---
-// Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Button from "@/components/fundations/elements/Button.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
-// Components
-import PodcastCardWide from "@/components/podcast/PodcastCardWide.astro";
-// Content
-import { getCollection } from "astro:content";
-// Get all podcasts
-const allPodcasts = await getCollection("podcast");
-allPodcasts.sort((a, b) => {
-  const dateA = new Date(a.data.pubDate).getTime(); // Convert to timestamp
-  const dateB = new Date(b.data.pubDate).getTime(); // Convert to timestamp
-  return dateB - dateA; // Compare timestamps
-});
+import { getPopularEpisodes, resolveEpisodeGuests } from "@/lib/notion";
+
+const episodes = await resolveEpisodeGuests(await getPopularEpisodes());
 ---
 
 <section>
   <Wrapper variant="standard" class="pt-32 pb-12">
     <div class="flex flex-wrap items-center justify-between w-full gap-4">
       <Text tag="p" variant="textSM" class="font-medium uppercase">
-        Recent podcast interviews
+        Start here
       </Text>
       <Button
         isLink
@@ -31,17 +22,41 @@ allPodcasts.sort((a, b) => {
         aria-label="Listen to all podcast episodes"
         title="Listen to all podcast episodes"
       >
-        Listen to them all
+        All episodes
       </Button>
     </div>
-    <div
-      class="flex flex-col items-start pt-4 mt-4 border-t border-black divide-y"
-    >
-      {
-        allPodcasts
-          .filter((post) => post.data.isPopular)
-          .map((post) => <PodcastCardWide post={post} />)
-      }
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 mt-4 border-t border-black">
+      {episodes.map((episode) => {
+        const url = `/podcast/interviews/${episode.slug}`;
+        const guestName = episode.guests?.[0]?.name ?? null;
+        return (
+          <article class="group">
+            <a href={url} title={episode.title} aria-label={`Listen to ${episode.title}`} class="block aspect-square overflow-hidden">
+              {episode.coverArt
+                ? <img src={episode.coverArt} alt={guestName ?? episode.title} width="800" height="800" class="object-cover w-full h-full group-hover:scale-105" loading="lazy" />
+                : <div class="w-full h-full bg-stone-100 group-hover:scale-105"></div>
+              }
+            </a>
+            <div class="mt-3">
+              {episode.episodeNumber && (
+                <Text tag="p" variant="textXS" class="uppercase text-base-400">
+                  Ep. {episode.episodeNumber}
+                </Text>
+              )}
+              <a href={url} class="group-hover:underline">
+                <Text tag="h2" variant="textSM" class="mt-0.5 font-medium leading-snug">
+                  {episode.title}
+                </Text>
+              </a>
+              {guestName && (
+                <Text tag="p" variant="textXS" class="mt-1 text-base-500">
+                  {guestName}
+                </Text>
+              )}
+            </div>
+          </article>
+        );
+      })}
     </div>
   </Wrapper>
 </section>

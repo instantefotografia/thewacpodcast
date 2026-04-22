@@ -1,0 +1,193 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import ShareButtons from "@/components/fundations/elements/ShareButtons.astro";
+import Subscribe from "@/components/ctas/Subscribe.astro";
+import { getTranscriptFile } from "@/lib/notion";
+import type { Episode } from "@/lib/notion";
+import { marked } from "marked";
+
+interface Props {
+  episode: Episode;
+  previous: Episode | null;
+  next: Episode | null;
+}
+
+const { episode, previous, next } = Astro.props;
+
+// Transcript: read markdown file → convert to HTML
+const transcriptMd = episode.transcriptFile ? getTranscriptFile(episode.transcriptFile) : "";
+const transcriptHtml = transcriptMd ? await marked(transcriptMd) : "";
+
+// Key Quotes: split on --- separator (with surrounding whitespace/newlines)
+const keyQuotesList: string[] = episode.keyQuotes
+  ? episode.keyQuotes.split(/\s*---\s*/).map((q) => q.trim()).filter(Boolean)
+  : [];
+
+// Summary EN: split on any newline → multiple paragraphs
+const summaryParagraphs: string[] = episode.summaryEn
+  ? episode.summaryEn.split(/\n+/).map((p) => p.trim()).filter(Boolean)
+  : [];
+
+const pubDate = episode.publishedDate
+  ? new Date(episode.publishedDate).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    })
+  : "";
+
+const guest = episode.guests?.[0];
+---
+
+<BaseLayout>
+  <section>
+
+    {/* Hero image — afastada do topo para não colidir com o logo fixo */}
+    <div class="pt-20 lg:pt-40 flex justify-center">
+      {episode.coverArt
+        ? <img src={episode.coverArt} alt={episode.title} height="2000" width="2000" class="object-cover object-top max-h-[70dvh] max-w-[1000px]" />
+        : null
+      }
+    </div>
+
+    <Wrapper variant="standard" class="pb-32">
+      <div class="max-w-4xl pt-12 mx-auto">
+        {episode.episodeNumber && (
+          <Text tag="p" variant="textXS" class="uppercase text-base-400 mb-2">
+            Episode {episode.episodeNumber}
+            {episode.season ? ` · Season ${episode.season}` : ""}
+          </Text>
+        )}
+        <Text tag="h1" variant="displayMD" class="font-light leading-6 md:leading-8 text-base-600">
+          <span class="text-base-900">{episode.title}</span>
+          {episode.shortDescription && <> — {episode.shortDescription}</>}
+        </Text>
+
+        {/* Guest info */}
+        {guest && (
+          <div class="mt-4">
+            <Text tag="p" variant="textXS" class="text-base-600">
+              <span class="font-medium">{guest.name}</span>
+              {guest.role && <span class="block">{guest.role}</span>}
+              {guest.brand && <span class="block italic">{guest.brand}</span>}
+            </Text>
+          </div>
+        )}
+
+        {pubDate && (
+          <Text tag="p" variant="textXS" class="mt-2 text-base-400">
+            <time datetime={pubDate}>{pubDate}</time>
+          </Text>
+        )}
+      </div>
+
+      {/* Listen links */}
+      <div class="max-w-4xl mx-auto">
+        {episode.spotifyUrl && episode.audioUrl && (
+          <div class="mt-16 lg:mt-24 flex flex-col sm:flex-row gap-4">
+            <a
+              href={episode.spotifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex-1 px-6 py-3 bg-base-900 text-white rounded hover:bg-base-800 transition text-center font-medium text-sm"
+            >
+              Listen on Spotify
+            </a>
+            {episode.audioUrl && (
+              <a
+                href={episode.audioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 px-6 py-3 border border-base-900 text-base-900 rounded hover:bg-base-50 transition text-center font-medium text-sm"
+              >
+                Listen on Transistor
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Summary & Key Quotes */}
+      <div class="max-w-4xl mx-auto">
+        {summaryParagraphs.length > 0 && (
+          <>
+            <Text tag="h2" variant="textXS" class="mt-24 text-base-900 uppercase lg:mt-40">
+              summary
+            </Text>
+            <Wrapper variant="prose" class="mt-2 max-w-none">
+              {summaryParagraphs.map((para) => (
+                <p>{para}</p>
+              ))}
+            </Wrapper>
+          </>
+        )}
+
+        {keyQuotesList.length > 0 && (
+          <>
+            <Text tag="h2" variant="textXS" class="mt-12 text-base-900 uppercase lg:mt-20">
+              key quotes
+            </Text>
+            <div class="mt-4 space-y-6">
+              {keyQuotesList.map((quote) => (
+                <blockquote class="border-l-2 border-base-900 pl-5 italic text-base-600 text-sm leading-relaxed">
+                  {quote}
+                </blockquote>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Transcript / body — colapsado por defeito (SEO only) */}
+        {transcriptHtml ? (
+          <>
+            <details class="mt-12 lg:mt-20 group">
+              <summary class="cursor-pointer list-none flex items-center justify-between">
+                <Text tag="span" variant="textXS" class="text-base-900 uppercase">
+                  transcript
+                </Text>
+                <span class="text-base-400 text-xs group-open:hidden">+ show</span>
+                <span class="text-base-400 text-xs hidden group-open:inline">− hide</span>
+              </summary>
+              <Wrapper variant="prose" class="mt-4 max-w-none" set:html={transcriptHtml} />
+            </details>
+          </>
+        ) : (
+          <>
+            <Text tag="h2" variant="textXS" class="mt-24 text-base-900 uppercase lg:mt-40">
+              overview
+            </Text>
+            <Wrapper variant="prose" class="mt-2">
+              <slot />
+            </Wrapper>
+          </>
+        )}
+
+        <div class="pt-6 mt-6 border-t border-black">
+          <ShareButtons contentType="podcast" description={episode.shortDescription || episode.title} />
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  {/* Prev / Next nav */}
+  <Wrapper variant="standard" class="pb-24 pt-8">
+    <nav class="flex flex-col md:flex-row lg:justify-between gap-4 lg:items-center relative text-xs">
+      {previous && (
+        <a href={`/podcast/interviews/${previous.slug}`} class="hover:opacity-80">
+          <span class="block text-base-900 font-medium uppercase">Previous:</span>
+          <span class="block text-base-600">{previous.title}</span>
+        </a>
+      )}
+      {next && (
+        <a href={`/podcast/interviews/${next.slug}`} class="hover:opacity-80 text-right">
+          <span class="block text-base-900 font-medium uppercase">Next:</span>
+          <span class="block text-base-600">{next.title}</span>
+        </a>
+      )}
+    </nav>
+  </Wrapper>
+
+  <Subscribe />
+</BaseLayout>

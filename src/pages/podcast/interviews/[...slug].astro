@@ -1,43 +1,48 @@
 ---
-import { getCollection, render } from "astro:content";
-import PodcastLayout from "@/layouts/PodcastLayout.astro";
+import { getEpisodes, getEpisodeBySlug, getEpisodeBody, getGuestById, getEpisodeContent } from "@/lib/notion";
+import EpisodeLayout from "@/layouts/EpisodeLayout.astro";
+import { marked } from "marked";
 
-// Generate static paths for all podcast slugs
 export async function getStaticPaths() {
-  const podcast = await getCollection("podcast");
-  return podcast.map((entry) => ({
-    params: { slug: entry.id },
-    props: { slug: entry.id },
-  }));
+  const episodes = await getEpisodes();
+  return episodes
+    .filter((ep) => ep.slug)
+    .map((ep) => ({
+      params: { slug: ep.slug },
+      props: { slug: ep.slug },
+    }));
 }
 
 const { slug } = Astro.props;
 
-// Re-fetch and sort all podcast posts
-const allPosts = await getCollection("podcast");
+const episode = await getEpisodeBySlug(slug);
+if (!episode) return Astro.redirect("/404");
 
-const validPosts = allPosts.filter(
-  (item) => item.data?.pubDate && item.data?.title
+// Fetch episode content (key quotes, summary, transcript file)
+const content = await getEpisodeContent(episode.id);
+if (content) {
+  episode.keyQuotes = content.keyQuotes;
+  episode.summaryEn = content.summaryEn;
+  episode.transcriptFile = content.transcriptFile;
+}
+
+// Fetch guests
+const guests = await Promise.all(
+  episode.guestIds.map((id) => getGuestById(id))
 );
+episode.guests = guests.filter(Boolean) as typeof guests;
 
-const sorted = validPosts.sort(
-  (a, b) =>
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
+// Fetch body (transcript)
+const bodyMd = await getEpisodeBody(episode.id);
+const bodyHtml = bodyMd ? await marked(bodyMd) : "";
 
-const index = sorted.findIndex((item) => item.id === slug);
-const currentPost = sorted[index];
-const previous = sorted[index - 1] || null;
-const next = sorted[index + 1] || null;
-
-const { Content } = await render(currentPost);
+// Adjacent episodes for prev/next nav
+const allEpisodes = await getEpisodes();
+const idx = allEpisodes.findIndex((ep) => ep.slug === slug);
+const previous = allEpisodes[idx + 1] || null;
+const next = allEpisodes[idx - 1] || null;
 ---
 
-<PodcastLayout
-  frontmatter={currentPost.data}
-  slug={currentPost.id}
-  previous={previous}
-  next={next}
->
-  <Content />
-</PodcastLayout>
+<EpisodeLayout episode={episode} previous={previous} next={next}>
+  <Fragment set:html={bodyHtml} />
+</EpisodeLayout>

@@ -6,88 +6,166 @@ import Avatar2 from "@/images/about/2.jpeg";
 import Avatar3 from "@/images/about/3.jpeg";
 import Avatar4 from "@/images/about/4.jpeg";
 
+// Components
+import AuthorGrid from "@/components/authors/AuthorGrid.astro";
+
 // Fundations
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Subscribe from "@/components/ctas/Subscribe.astro";
 ---
 
 <BaseLayout>
-  <section>
-    <Wrapper variant="standard" class="py-24">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-        <div class="pr-10">
-          <Text
-            tag="h1"
-            variant="textXS"
-            class="font-medium uppercase text-text-base-900"
-            >Welcome to <span class="text-base-900"
-              >Innovative Design Conversations</span
-            >, where creativity meets engineering. Join us for insightful
-            interviews and podcasts that explore the minds of design engineers —</Text
-          >
-          <div
-            class="mt-24 font-serif text-base-600 grid grid-cols-1 md:grid-cols-2 gap-4"
-          >
-            <Text tag="p" variant="textSM" class="first-letter:text-2xl">
-              Innovative Design Conversations is a space where creativity and
-              engineering come together. In today’s fast-paced design landscape,
-              design engineers play a vital role in transforming visionary ideas
-              into functional, user-centered solutions. They bridge the gap
-              between aesthetics and practicality, ensuring that designs are not
-              only visually striking but also feasible to implement. Their work
-              is a testament to the seamless blend of artistic creativity and
-              technical expertise.
-            </Text>
-            <Text tag="p" variant="textSM">
-              Our blog dives deep into this fascinating intersection, offering
-              interviews with industry experts, engaging podcasts, and
-              thoughtful articles. We explore the challenges and triumphs faced
-              by design engineers, highlighting the innovative approaches that
-              drive the field forward. Whether you’re here to gain insights,
-              find inspiration, or simply learn more about the evolving world of
-              design engineering, you’re part of a community dedicated to
-              shaping the future of design.
+  <!-- Hero -->
+  <section class="bg-base-900">
+    <Wrapper variant="standard" class="pt-70 pb-24">
+      <div class="max-w-3xl">
+        <Text
+          tag="p"
+          variant="textXS"
+          class="font-medium uppercase text-white/50 mb-6 tracking-widest"
+        >
+          The Host
+        </Text>
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-serif font-light text-white/60"
+        >
+          <span class="italic text-white">I started the WAC</span> because I
+          needed the conversation to exist.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
 
-              <br /><br />Design engineers are at the forefront of innovation,
-              solving complex problems while keeping user experience at the
-              heart of their creations. They don’t just design for today—they
-              craft solutions that stand the test of time, adapting to the
-              ever-changing demands of technology, sustainability, and human
-              interaction.
-            </Text>
-          </div>
+  <!-- Opening -->
+  <section>
+    <Wrapper variant="standard" class="pt-24 pb-16">
+      <div class="max-w-xl mx-auto">
+        <!-- Text Section -->
+        <div class="mb-20">
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed first-letter:text-2xl">
+            Not a blog. Not a newsletter. A real conversation with people in the
+            same industry, carrying the same questions, pretending less than they
+            do online.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-6">
+            I'm Rui. I've been photographing weddings professionally since 2010.
+            Over those years I built something I'm proud of. I also spent a long
+            time building it in relative silence, because the industry didn't
+            have many places where you could say "I'm afraid I won't have
+            bookings next year" without it reading as a sign of weakness.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-6">
+            Then I interviewed Greg Finck. One of the best wedding photographers
+            in the world. And he said exactly that.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-900 font-medium leading-relaxed mt-6">
+            That conversation confirmed what I already suspected: the level of
+            the brand doesn't change the level of the fear. It just changes how
+            well you hide it. The WAC exists because hiding it is a waste.
+          </Text>
         </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-          <Image
-            src={Avatar1}
-            width={1000}
-            height={1000}
-            loading="lazy"
-            decoding="async"
-            alt="#_"
-            class="object-cover object-center h-full grayscale aspect-4/3"
-          />
-          <Image
-            src={Avatar2}
-            width={1000}
-            height={1000}
-            loading="lazy"
-            decoding="async"
-            alt="#_"
-            class="object-cover object-center h-full grayscale aspect-4/3"
-          />
-          <Image
-            src={Avatar3}
-            width={1000}
-            height={1000}
-            loading="lazy"
-            decoding="async"
-            alt="#_"
-            class="object-cover object-center h-full grayscale col-span-full aspect-4/2"
-          />
+      </div>
+
+      <!-- Author Image Grid -->
+      <AuthorGrid
+        images={[
+          "/images/hosts/wac-host-1.jpg",
+          "/images/hosts/wac-host-2.jpg",
+          "/images/hosts/wac-host-3.jpg",
+          "/images/hosts/wac-host-4.jpg",
+          "/images/hosts/wac-host-5.jpg",
+          "/images/hosts/wac-host-6.jpg",
+          "/images/hosts/wac-host-7.jpg"
+        ]}
+      />
+    </Wrapper>
+  </section>
+
+  <!-- The podcast + blog -->
+  <section class="border-t border-base-200">
+    <Wrapper variant="standard" class="py-24">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div>
+          <Text tag="p" variant="textXS" class="font-medium uppercase text-base-400 tracking-widest mb-6">
+            The Podcast
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed">
+            Each episode is a conversation with someone who has built something
+            real in this industry. Photographers, planners, creatives, venue
+            directors. The format is simple. I ask the questions I actually want
+            answered. We go where the conversation leads.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-4">
+            No scripts. No manufactured energy.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-4">
+            I've been doing this for two years. I moved too fast at first, too
+            many things at once, too much looking at what the project could
+            become instead of what it needed to be. I've slowed down. I came
+            back to the thing that worked from the start: showing up,
+            consistently, with good questions and the patience to listen.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-900 font-medium mt-4">
+            That's still the whole plan.
+          </Text>
+          <a
+            href="/podcast"
+            class="inline-block mt-8 uppercase text-xs font-medium text-base-900 border-b border-base-900 pb-0.5 hover:opacity-60 transition-opacity"
+          >
+            Listen to all episodes
+          </a>
+        </div>
+
+        <div>
+          <Text tag="p" variant="textXS" class="font-medium uppercase text-base-400 tracking-widest mb-6">
+            The Blog
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed">
+            I also write. The blog is where some of those conversations
+            continue, or go further than the episode allowed. Topics with real
+            weight in this industry: pricing, positioning, the slow work of
+            building a reputation, what it means to want more without losing
+            what already works.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-4">
+            I write the way I host: directly, without performing expertise I
+            don't have.
+          </Text>
+          <a
+            href="/blog"
+            class="inline-block mt-8 uppercase text-xs font-medium text-base-900 border-b border-base-900 pb-0.5 hover:opacity-60 transition-opacity"
+          >
+            Read the blog
+          </a>
+        </div>
+
+        <div>
+          <Text tag="p" variant="textXS" class="font-medium uppercase text-base-400 tracking-widest mb-6">
+            The Host
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed">
+            Wedding photographer since 2010. Based in Portugal, working across
+            Europe.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-4">
+            I notice things. That's the job, whether I'm holding a camera or a
+            microphone. I've spent fifteen years learning to read a room, to see
+            what's about to happen before it does, and to stay out of the way
+            when the moment arrives. I brought the same instinct to the WAC.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-4">
+            I don't put a photo above the experience of the person in front of
+            me. A conversation that feels real will always matter more to me
+            than an episode that sounds polished.
+          </Text>
         </div>
       </div>
     </Wrapper>
   </section>
+
+  <Subscribe />
 </BaseLayout>

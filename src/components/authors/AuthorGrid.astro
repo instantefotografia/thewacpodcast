@@ -1,0 +1,55 @@
+---
+// AuthorGrid.astro
+interface Props {
+  images: string[]; // Um array com as 8 URLs das imagens
+}
+const { images } = Astro.props;
+// Mapeamento das classes para manter a estrutura da imagem original
+const itemClasses = [
+  "item-1", "item-2", "item-3", "item-4",
+  "item-5", "item-6", "item-7"
+];
+---
+<div class="authorImageLayout">
+  {images.map((src, index) => (
+    <div
+      class={`item ${itemClasses[index]}`}
+      style={`background-image: url(${src});`}
+    >
+    </div>
+  ))}
+</div>
+<style>
+  .authorImageLayout {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(120px, auto);
+    gap: 1rem;
+    max-width: 1430px;
+    margin: 0 auto;
+  }
+  .item {
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-base-200);
+  }
+  /* Posicionamento idêntico ao layout da foto */
+  .item-1 { grid-column: 1 / 2; grid-row: 2 / 3; } /* Esquerda */
+  .item-2 { grid-column: 2 / 4; grid-row: 1 / 3; } /* Topo Centro */
+  .item-3 { grid-column: 4 / 5; grid-row: 1 / 4; } /* Vertical Direita */
+  .item-4 { grid-column: 2 / 3; grid-row: 3 / 4; } /* Curva Baixo */
+  .item-5 { grid-column: 3 / 4; grid-row: 3 / 5; } /* Quadrado Centro */
+  .item-6 { grid-column: 4 / 5; grid-row: 4 / 6; } /* Tubos Baixo */
+  .item-7 { grid-column: 5 / 6; grid-row: 2 / 4; } /* Círculo + Arco */
+  /* Responsividade: vira uma lista simples em celulares */
+  @media (max-width: 768px) {
+    .authorImageLayout {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .item {
+      grid-column: span 1 !important;
+      grid-row: auto !important;
+      aspect-ratio: 1 / 1;
+    }
+  }
+</style>

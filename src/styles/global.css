@@ -68,7 +68,7 @@
 @theme {
   /* Typography*/
   --font-sans: "Inter", sans-serif;
-  --font-serif: "STIX Two Text", serif;
+  --font-serif: "Cormorant Garamond", serif;
   /* Colors */
 
 
@@ -92,10 +92,15 @@
   --color-base-600: oklch(0.439 0 0);
   --color-base-700: oklch(0.371 0 0);
   --color-base-800: oklch(0.269 0 0);
-  --color-base-900: oklch(0.205 0 0);
-  --color-base-950: oklch(0.145 0 0);
+  --color-base-900: oklch(0.148 0.032 17); /* Chocolate Negro #261314 */
+  --color-base-950: oklch(0.112 0.035 17); /* Chocolate Negro puro */
 
 }
+img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, scale 0.7s ease-out;
+}
+
 :root {
   /* Typography */
   font-feature-settings: "liga" 1, "calt" 1,

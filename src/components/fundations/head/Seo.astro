@@ -1,31 +1,42 @@
 ---
 import { AstroSeo } from "@lexingtonthemes/seo";
+
+const {
+  title = "Wedding Artists Community Podcast",
+  description = "The podcast for wedding industry professionals who want to think deeper, build better, and connect with peers across the world.",
+  image = "/og-image.jpg",
+} = Astro.props;
+
+const siteUrl = "https://thewacpodcast.com";
+const fullTitle = title === "Wedding Artists Community Podcast"
+  ? title
+  : `${title} | WAC Podcast`;
 ---
 
 <AstroSeo
-  title="Your Page Title"
-  description="A detailed description of your page content."
-  canonical="https://yoursite.com/current-page"
+  title={fullTitle}
+  description={description}
+  canonical={siteUrl}
   openGraph={{
-    url: "https://yoursite.com/current-page",
-    title: "Your Page Title",
-    description: "A detailed description of your page content.",
+    url: siteUrl,
+    title: fullTitle,
+    description: description,
     images: [
       {
-        url: "https://yoursite.com/og-image.jpg",
+        url: `${siteUrl}${image}`,
         width: 1200,
         height: 630,
-        alt: "Open Graph Image Alt",
+        alt: "Wedding Artists Community Podcast",
         type: "image/jpeg",
       },
     ],
-    site_name: "Your Site Name",
+    site_name: "WAC Podcast",
     type: "website",
     locale: "en_US",
   }}
   twitter={{
-    handle: "@yourhandle",
-    site: "@yoursite",
+    handle: "@wacpodcast",
+    site: "@wacpodcast",
     cardType: "summary_large_image",
   }}
 />

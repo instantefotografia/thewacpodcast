@@ -1,21 +1,39 @@
 ---
-// Fundations
 import Text from "@/components/fundations/elements/Text.astro";
 import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+
+const platforms = [
+  { name: "Spotify", link: "https://open.spotify.com/show/6CBDI1nNRGpOqMFsdvJbzO?si=d4a41214c2d8412a" },
+  { name: "Apple Podcasts", link: "https://podcasts.apple.com/pt/podcast/the-wac-podcast/id1739397751" },
+  { name: "YouTube", link: "https://www.youtube.com/@thewacpodcast" },
+];
 ---
 
 <section>
-  <Wrapper variant="standard" class="pt-24"
-    >˙
-    <div class="max-w-3xl">
+  <Wrapper variant="standard" class="flex flex-col h-[calc(100dvh-6rem)] pb-12">
+    <div class="max-w-3xl mt-auto">
       <Text
         tag="h1"
         variant="displayLG"
         class="font-serif font-light text-base-600"
-        ><span class="text-base-900 italic">Designing the Future:</span> Exploring
-        UI/UX and Web Development Through Innovation, Engineering, and User-Centered
-        Experiences</Text
-      >
+      >Rui sits down with photographers, planners, designers, florists, and chefs — from Portugal to the US, from France to Mexico. <span class="text-base-900 italic">Every conversation is one the industry should hear.</span></Text>
+    </div>
+    <div class="flex items-center gap-6 mt-8">
+      <Text tag="p" variant="textXS" class="uppercase text-base-400 font-medium tracking-wide shrink-0">
+        Listen on
+      </Text>
+      <nav class="flex items-center gap-4 flex-wrap">
+        {platforms.map((p) => (
+          <a
+            href={p.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xs font-medium uppercase tracking-wide text-base-600 hover:text-base-900 transition-colors border-b border-base-300 hover:border-base-900 pb-px"
+          >
+            {p.name}
+          </a>
+        ))}
+      </nav>
     </div>
   </Wrapper>
 </section>

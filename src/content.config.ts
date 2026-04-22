@@ -33,7 +33,7 @@ const legal = defineCollection({
 });
 
 const podcast = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/podcast" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/podcast", ignore: ["transcripts/**"] }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),

@@ -1,0 +1,58 @@
+---
+// Fundations
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+---
+
+<section>
+  <Wrapper variant="standard" class="py-32 border-t border-black">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <Text
+          tag="p"
+          variant="textXS"
+          class="font-medium uppercase tracking-wide text-base-400"
+        >
+          The WAC
+        </Text>
+        <Text
+          tag="h2"
+          variant="displayLG"
+          class="font-serif font-light mt-4 text-base-900 leading-tight"
+        >
+          We instead of I.
+        </Text>
+      </div>
+
+      <div class="flex flex-col gap-5">
+        <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed">
+          WAC was built with the goal of collective greatness. A space, both
+          digital and physical, where artists from all disciplines of the
+          wedding industry share not only their accomplishments, but also their
+          troubles and struggles.
+        </Text>
+        <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed">
+          Portugal is the birthplace of WAC, but not the final destination.
+          The industry is becoming global fast. The podcast was the first step.
+          The meetups, workshops, and galas are what comes next.
+        </Text>
+        <div class="flex items-center gap-6 mt-4">
+          <a
+            href="/about"
+            class="uppercase text-xs font-medium text-base-900 border border-base-900 px-4 py-2 hover:bg-base-900 hover:text-white transition-colors"
+          >
+            About Rui
+          </a>
+          <a
+            href="/community"
+            class="uppercase text-xs font-medium text-base-600 hover:text-base-900 transition-colors"
+          >
+            The Community
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </Wrapper>
+</section>

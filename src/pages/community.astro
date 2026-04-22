@@ -1,0 +1,113 @@
+---
+// Fundations
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Text from "@/components/fundations/elements/Text.astro";
+import Wrapper from "@/components/fundations/containers/Wrapper.astro";
+import Subscribe from "@/components/ctas/Subscribe.astro";
+---
+
+<BaseLayout>
+  <!-- Hero -->
+  <section class="bg-base-900">
+    <Wrapper variant="standard" class="pt-70 pb-24">
+      <div class="max-w-3xl">
+        <Text
+          tag="p"
+          variant="textXS"
+          class="font-medium uppercase text-white/50 mb-6 tracking-widest"
+        >
+          Community
+        </Text>
+        <Text
+          tag="h1"
+          variant="displayMD"
+          class="font-serif font-light text-white/60"
+        >
+          <span class="italic text-white">This is not a community</span> for
+          people who have arrived.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+
+  <!-- Who it's for -->
+  <section>
+    <Wrapper variant="standard" class="pt-24 pb-16">
+      <div class="max-w-2xl">
+        <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed first-letter:text-2xl">
+          There's already a place for that. It has a dress code and a waiting
+          list and it signals, very clearly, that you are in. The WAC is not
+          that place.
+        </Text>
+        <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-6">
+          The WAC is for people who want more, for their work, for their
+          thinking, for the way they move through this industry. People who are
+          willing to say what went wrong, not just what went right. People who
+          are as interested in someone else's question as they are in their own
+          answer.
+        </Text>
+        <Text tag="p" variant="textSM" class="text-base-900 font-medium leading-relaxed mt-6">
+          You might be ten years in with a full calendar and a price point that
+          makes you proud. You might be two years in wondering if the work is
+          actually getting better. Both of you belong here.
+        </Text>
+      </div>
+    </Wrapper>
+  </section>
+
+  <!-- What it is now + direction -->
+  <section class="border-t border-base-200">
+    <Wrapper variant="standard" class="py-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div>
+          <Text tag="p" variant="textXS" class="font-medium uppercase text-base-400 tracking-widest mb-6">
+            Right now
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed">
+            For now, it's the podcast. Two episodes a month, honest
+            conversations with people who've built something worth talking
+            about.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-4">
+            The direction is towards something more: a space where the
+            conversation continues after the episode ends. A place where the
+            question someone asks in a group chat at 10pm gets a real answer
+            from someone who's been there.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-4">
+            And eventually, a room where we're all in the same place at the
+            same time. Not a summit for the elite. An annual gathering for
+            anyone who takes the work seriously enough to show up.
+          </Text>
+          <a
+            href="/podcast"
+            class="inline-block mt-8 uppercase text-xs font-medium text-base-900 border-b border-base-900 pb-0.5 hover:opacity-60 transition-opacity"
+          >
+            Listen to the podcast
+          </a>
+        </div>
+
+        <div>
+          <Text tag="p" variant="textXS" class="font-medium uppercase text-base-400 tracking-widest mb-6">
+            Who it's for
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed">
+            The WAC exists for wedding professionals who want more and better,
+            for their work, for their income, for their life. Photographers,
+            planners, creatives, venue teams.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-600 leading-relaxed mt-4">
+            It is not aimed at people who are happy where they are. It's not a
+            criticism of that choice. It's just a different conversation.
+          </Text>
+          <Text tag="p" variant="textSM" class="text-base-900 font-medium leading-relaxed mt-4">
+            If you've ever listened to an episode and thought "I needed to hear
+            that", you're already part of this.
+          </Text>
+        </div>
+      </div>
+    </Wrapper>
+  </section>
+
+  <Subscribe />
+</BaseLayout>

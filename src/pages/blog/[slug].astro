@@ -1,0 +1,32 @@
+---
+import { getBlogPosts, getBlogPostBySlug, getBlogPostBody } from "@/lib/notion";
+import BlogArticleLayout from "@/layouts/BlogArticleLayout.astro";
+import { marked } from "marked";
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts
+    .filter((p) => p.slug)
+    .map((p) => ({
+      params: { slug: p.slug },
+      props: { slug: p.slug },
+    }));
+}
+
+const { slug } = Astro.props;
+
+const post = await getBlogPostBySlug(slug);
+if (!post) return Astro.redirect("/404");
+
+const bodyMd = await getBlogPostBody(post.id);
+const bodyHtml = bodyMd ? await marked(bodyMd) : "";
+
+const allPosts = await getBlogPosts();
+const idx = allPosts.findIndex((p) => p.slug === slug);
+const previous = allPosts[idx + 1] || null;
+const next = allPosts[idx - 1] || null;
+---
+
+<BlogArticleLayout post={post} previous={previous} next={next}>
+  <Fragment set:html={bodyHtml} />
+</BlogArticleLayout>

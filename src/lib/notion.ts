@@ -326,9 +326,7 @@ export async function getEpisodeBody(pageId: string): Promise<string> {
 export function getTranscriptFile(filename: string): string {
   if (!filename) return "";
   try {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-    const filepath = join(__dirname, "../data/transcripts", filename);
+    const filepath = join(process.cwd(), "src/data/transcripts", filename);
     return readFileSync(filepath, "utf-8");
   } catch (err) {
     console.error(`Failed to read transcript file: ${filename}`, err);

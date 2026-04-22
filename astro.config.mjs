@@ -6,9 +6,7 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: vercel({
-    includeFiles: ["src/data/transcripts/**"],
-  }),
+  adapter: vercel(),
 
   vite: {
     plugins: [tailwindcss()],

@@ -1,8 +1,11 @@
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
-import { readFileSync } from "fs";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+// Pre-load all transcript files at build time so they're bundled into the serverless function
+const transcripts = import.meta.glob<string>("../data/transcripts/*.md", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
 
 // ─── Client ──────────────────────────────────────────────────────────────────
 
@@ -325,13 +328,8 @@ export async function getEpisodeBody(pageId: string): Promise<string> {
 
 export function getTranscriptFile(filename: string): string {
   if (!filename) return "";
-  try {
-    const filepath = join(process.cwd(), "src/data/transcripts", filename);
-    return readFileSync(filepath, "utf-8");
-  } catch (err) {
-    console.error(`Failed to read transcript file: ${filename}`, err);
-    return "";
-  }
+  const key = `../data/transcripts/${filename}`;
+  return transcripts[key] ?? "";
 }
 
 // ─── Blog ─────────────────────────────────────────────────────────────────────

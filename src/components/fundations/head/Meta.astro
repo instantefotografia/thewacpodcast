@@ -1,3 +1,7 @@
+---
+const GSC_VERIFICATION = import.meta.env.PUBLIC_GSC_VERIFICATION;
+---
+
 <!-- Meta Tags -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -6,5 +10,5 @@
 <meta name="robots" content="index, follow" />
 <meta name="googlebot" content="index, follow" />
 
-<meta name="robots" content="index, follow" />
-<meta name="googlebot" content="index, follow" />
+<!-- Google Search Console Verification -->
+{GSC_VERIFICATION && <meta name="google-site-verification" content={GSC_VERIFICATION} />}

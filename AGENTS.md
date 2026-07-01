@@ -124,3 +124,7 @@ From `README.md` (run at repo root):
 - **Changelog:** https://lexingtonthemes.com/changelog/hemingway  
 - **Support:** https://lexingtonthemes.com/legal/support/  
 - **Bundle:** https://lexingtonthemes.com  
+
+## Imported Claude Cowork project instructions
+
+Tudo sobre o Website do WAC
